@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="grid_width">12</integer>
+    <integer name="grid_height">12</integer>
+
+    <string-array name="vertical_words">
+        <item>5;PALHA;Mosquito ______: Nome popular do inseto transmissor da Leishmaniose</item>
+        <item>0;CALAZAR;Nome popular da Leishmaniose Visceral, possui este nome por causar uma pigmentação escura na pele.</item>
+        <item>0;LEISHMANIA;Gênero do protozoário causador da doença Leishmaniose.</item>
+        <item>5;ROEDOR;Um dos reservatórios naturais do agente causador da Leishmaniose.</item>
+        <item>0;FIGADOBACO;Órgãos mais afetados na leishmaniose visceral.</item>
+        <item>1;ULCERA;Nome genérico dado a qualquer lesão superficial em tecido cutâneo ou mucoso, popularmente chamada de ferida, sintoma da leishmaniose tegumentar.</item>
+        <item>0;CUTANEA;A leishmaniose tegumentar pode ser dividida em: ______, mucosa ou mucocutânea.</item>
+        <item>2;BOTAO;______ do Oriente: nome popular pelo qual é chamada a Leishmaniose Tegumentar.</item>
+        <item>1;MOSQUITEIRO;O uso de ____________ de malha fina em portas e janelas nas áreas endêmicas da leishmaniose tegumentar é uma das medidas de prevenção contra a doença</item>
+    </string-array>
+
+    <string-array name="horizontal_words">
+        <item>2;VISCERAL;Leishmaniose ______: Forma da doença na qual o parasita causador da leishmaniose migra para os órgãos viscerais como fígado, baço e medula óssea.</item>
+        <item>3;PELE;Se  for leishmaniose tegumentar, aparecerão lesões na _____ que podem ser confundidas com um ferimento comum.</item>
+        <item>0;CACHORRO;Mamífero carnívoro,  domesticado pelo homem que pode contrair Leishmaniose e servir de reservatório da doença.</item>
+        <item>5;ANEMIA;Os sintomas da Leishmaniose visceral são: febre de longa duração e _______, aumento do fígado e baço.</item>
+        <item>0;BAURU;Úlcera de ______: Nome popular da Leishmaniose Tegumentar, devido aos primeiros casos identificados da doença terem ocorrido na cidade de Bauru, SP.</item>
+        <item>1;LUTZOMYIA;Nome científico do gênero do vetor da Leishmaniose.</item>
+        <item>7;PARA;Estado da região norte brasileira mais afetado pela doença em 2011, segundo dados do Ministério da Saúde.</item>
+        <item>7;HOMEM;Hospedeiro definitivo da leishmaniose visceral.</item>
+        <item>0;TEGUMENTAR;A leishmaniose cutânea e a leishmaniose mucosa são tipos de leishmaniose __________.</item>
+        <item>7;NORTE;Em 2011 foi a região do Brasil que registrou maior índice de  casos (7.362)  de Leishmaniose tegumentar, de acordo com dados do Ministério da Saúde.</item>
+        <item>2;FEBRE;Um dos sintomas da fase aguda da leishmaniose visceral.</item>
+        <item>1;VACINA;Desenvolvida de forma pioneira no Brasil por pesquisadora da Universidade Federal do Rio de Janeiro (UFRJ), utilizada para imunização canina contra a leishmaniose.</item>
+        <item>7;FEMEA;Gênero do mosquito flebotomíneo que pica homem e animais e transmite a leishmaniose.</item>
+        <item>0;CRIADOURO;Drenagem de ________, uma das medidas de controle da leishmaniose tegumentar e visa a interrupção do ciclo de vida do vetor.</item>
+        <item>4;VETORIAL;A forma predominante de transmissão da leishmaniose é a transmissão ______, que envolve o vetor flebotomíneo.</item>
+        <item>5;ZOONOSE;Doenças de animais transmissíveis ao homem, tipo no qual se enquadra a  leishmaniose.</item>
+    </string-array>
+</resources> 

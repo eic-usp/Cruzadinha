@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="grid_width">12</integer>
+    <integer name="grid_height">12</integer>
+
+    <string-array name="vertical_words">
+        <item>0;INSETICIDAS;Uma das medidas de prevenção contra a malária é o uso de ____________ que matam os mosquitos transmissores da doença.</item>
+        <item>3;QUININA;Substância extraída de plantas utilizada na fabricação de fármacos contra a malária.</item>
+        <item>0;FEBRE;Sintoma mais comum e característico da Malária repete-se com periodicidade.</item>
+        <item>6;PICADA;É através da ______ do mosquito fêmea que o agente causador da Malária entra na corrente sanguínea do homem.</item>
+        <item>0;PALUDISMO;Nome popular da malária.</item>
+        <item>5;PARA;Estado brasileiro localizado na região norte brasileira, que mais registrou casos de malária em 2011, segundo dados do Ministério da Saúde.</item>
+        <item>3;REPELENTE;Substância utilizada para repelir insetos, seu uso é uma das medidas de proteção individual contra a Malária.</item>
+        <item>4;FEMEA;Substância utilizada para repelir insetos, seu uso é uma das medidas de proteção individual contra a Malária.</item>
+        <item>4;HEMACIAS;Células anucleadas que compõem a parte vermelha do sangue, no interior das quais os parasitas se dividirão e seu rompimento leva à febre.</item>
+        <item>2;CREPUSCULO;Instantes em que o céu próximo ao horizonte toma uma cor gradiente, entre o azul do dia e o escuro da noite. Normalmente acontecem nos instantes do amanhecer e anoitecer.</item>
+        <item>2;IGARAPES;Cursos d'água presentes na região amazônica de pouca profundidade que ocorrem quase no interior da mata e que são criadouros naturais do mosquito transmissor da malária.</item>
+        <item>2;PROGUANIL;Fármaco preventivo quando a doença em questão é a Malária.</item>
+        <item>0;DARLINGI;Anopheles __________, é uma das espécies do mosquito transmissor da Malária mais comum no Brasil.</item>
+        <item>2;TELAS;Medida preventiva contra a malária, colocada ao redor de janelas e portas, com o objetivo de prevenir a entrada dos mosquitos no interior das casas.</item>
+    </string-array>
+
+    <string-array name="horizontal_words">
+        <item>0;ANOPHELES;Gênero do mosquito transmissor da Malária.</item>
+        <item>5;LIMPA;Água parada e _______ ideal para a reprodução do mosquito transmissor da malária.</item>
+        <item>1;AMAZONIA;Região brasileira com maior ocorrência  da Malária: ________ Legal.</item>
+        <item>2;MALEITA;Nome popular da malária.</item>
+        <item>1;AFRICA;Continente afetado pela malária.</item>
+        <item>4;HOMEM;Hospedeiro intermediário da malária.</item>
+        <item>0;GOTAESPESSA; Exame para diagnóstico rápido da malária.</item>
+        <item>1;MOSQUITEIRO;O uso de ________ em áreas endêmicas da Malária é uma das medidas de prevenção contra a doença.</item>
+        <item>0;ESPOROGONIA;Forma de reprodução sexuada do parasita causador da malária que ocorre no mosquito.</item>
+    </string-array>
+</resources> 

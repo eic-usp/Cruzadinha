@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="grid_width">12</integer>
+    <integer name="grid_height">12</integer>
+
+    <string-array name="vertical_words">
+        <item>6;CRUZI;Trypanosoma _____ : Nome científico do protozoário causador da Doença de Chagas.</item>
+        <item>0;ACAI;Alimento algumas vezes envolvido na transmissão por via oral da Doença de Chagas, quando consumido não pasteurizado.</item>
+        <item>5;CARLOS;______ Chagas: nome do médico e cientista brasileiro que descobriu o agente causador e o transmissor da Doença de Chagas.</item>
+        <item>2;ROMANA;Sinal de ______: Sintoma da Doença de Chagas que se caracteriza pelo inchaço das pálpebras do indivíduo contaminado.</item>
+        <item>0;MEGACOLON;Alteração do sistema digestório, ao nível do intestino, que pode ser encontrada em casos crônicos da Doença de Chagas.</item>
+        <item>0;ORAL;Forma de transmissão da Doença de Chagas que se dá através da ingestão de alimentos contendo o vetor ou suas fezes contaminados com o T. cruzi.</item>
+        <item>2;AMERICANA;Tripanossomíase ___________, nome pelo qual também é conhecida a Doença de Chagas, devido ao vetor existir apenas no continente americano.</item>
+        <item>6;AGUDA;Uma das fases da Doença de Chagas que surge após a infecção, cujos sintomas clínicos são mais nítidos. É um período de definição: ou o paciente se cura, ou passa para a fase crônica ou morre.</item>
+        <item>1;OSWALDOCRUZ;Instituto ______ no qual o cientista que descobriu a Doença de Chagas trabalhava.</item>
+        <item>4;TRIATOMA;Um dos gêneros taxonômicos do inseto vetor da Doença de Chagas.</item>
+        <item>0;CORAÇAO;Um dos órgãos que podem ser comprometidos pela infecção do T.cruzi, agente causador da doença de Chagas.</item>
+        <item>7;TAIPA;Tipo de construção de casas na zona rural que pode abrigar o Barbeiro, vetor da doença de Chagas.</item>
+        <item>5;FEZES;São eliminadas pelo vetor durante a picada. Ao coçar, quando contaminadas com o T. cruzi, são carregadas até o ferimento, possibilitando a entrada do parasita no corpo.</item>
+    </string-array>
+
+    <string-array name="horizontal_words">
+        <item>0;PAUAPIQUE;Típica construção residencial que serve de abrigo para o inseto transmissor da Doença de Chagas.</item>
+        <item>2;BARBEIRO;Nome popular do inseto vetor da Doença de Chagas</item>
+        <item>4;CHAGOMA;____ de inoculação: Sintoma da Doença de Chagas visível no local da picada do inseto Barbeiro.</item>
+        <item>1;CANA;Caldo de  _____: Alimento que já esteve envolvido na transmissão por via oral da Doença de Chagas.</item>
+        <item>0;DIGESTIVA;Forma ______: Forma da Doença de Chagas que provoca alterações ao longo do trato digestório.</item>
+        <item>0;MEGAESOFAGO;Alteração do sistema digestório que pode ser encontrada em casos crônicos da Doença de Chagas.</item>
+        <item>3;CORACAO;Um dos sintomas da fase crônica da Doença de Chagas é a miocardite que atinge o ________, provocando uma inflamação no miocárdio.</item>
+        <item>4;CRONICA;Uma das fases da Doença de Chagas, caracterizada por sintomas discretos e resposta imunológica alta.</item>
+        <item>0;NORTE;Segundo o Ministério da Saúde entre 2000 a 2011, a região _____ que abrange: Acre, Amapá, Amazonas, Pará, Rondônia, Roraima e Tocantins, registrou o maior número de casos da Doença de Chagas.</item>
+        <item>3;CARDIACA;Forma ______: Forma da Doença de Chagas que provoca complicações no coração.</item>
+        <item>0;PROCOTO;Nome popular do inseto transmissor da Doença de Chagas na região do sertão da Paraíba.</item>
+        <item>2;RHODIUS;Um dos gêneros taxonômicos do inseto vetor da Doença de Chagas.</item>
+    </string-array>
+</resources>

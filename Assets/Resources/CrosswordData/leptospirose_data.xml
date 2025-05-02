@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="grid_width">12</integer>
+    <integer name="grid_height">12</integer>
+
+    <string-array name="vertical_words">
+        <item>1;ICTERICIA;Caracteriza-se pela cor amarelada da pele, mucosas e olhos, devido ao excesso de bilirrubina no sangue, cuja causa mais comum é a destruição das hemácias.</item>
+        <item>4;ENCHENTE;Resultado de uma chuva que não foi suficientemente absorvida pelo solo e outras formas de escoamento, causando transbordamentos.</item>
+        <item>0;RINS;Órgãos do sistema excretor, tem função de filtrar dejetos do sangue, e os excretar, com água, na urina.</item>
+        <item>0;ESGOTO;Águas residuais, que após a utilização humana, apresentam as suas características naturais alteradas.</item>
+        <item>1;RATAZANA;Nome popular do vetor e principal reservatório da leptospirose.</item>
+        <item>0;LAMA;A forma mais recorrente de transmissão da leptospirose é através do contato da pele com água e _____ contaminados com a bactéria causadora da leptospirose.</item>
+        <item>0;PANTURRILHAS;Geralmente na fase precoce da leptospirose há intensa dor muscular, principalmente na região lombar e nas ______________.</item>
+        <item>3;PELE;Local pelo qual a bactéria causadora da leptospirose entra no corpo através de lesões, mucosas ou contato prolongado com água ou lama contaminada.</item>
+        <item>1;ESPIROQUETA;As bactérias causadoras da leptospirose possuem forma helicoidal e são também chamadas de ________.</item>
+        <item>0;MIALGIA; Um dos sintomas da leptospirose.</item>
+        <item>0;WEIL;Pesquisador que em 1886 descreveu a doença Leptospirose e em sua homenagem a doença ficou conhecida como Sindrome de _____.</item>
+        <item>1;INCUBACAO;O período de ________ da leptospirose varia entre 1 a 30 dias.</item>
+        <item>0;GARI;Uma das profissões que facilita o contato com as leptospiras.</item>
+    </string-array>
+
+    <string-array name="horizontal_words">
+        <item>0;ANTIBIOTICOS;Uma combinação de _____ como: amplicilina, doxiciclina e cloranfenicol são utilizados no tratamento da leptospirose.</item>
+        <item>1;RATO;Nome popular do vetor da leptospirose.</item>
+        <item>2;URINA;A leptospira, bactéria causadora da leptospirose, é eliminada juntamente com a ______ do rato.</item>
+        <item>5;HIGIENE;Medidas básicas de ______, como lavar latas de refrigerante antes de consumi-los podem proteger contra a leptospirose.</item>
+        <item>4;FEBRE;Um dos sintomas da Leptospirose.</item>
+        <item>2;URBANA;Área onde ocorre o maior número de casos no Brasil.</item>
+        <item>0;AGUA;Quando contaminada, normalmente em grandes centros metropolitanos seu escoamento é impedido por acúmulo de lixo, pode transmitir a bactéria causadora da leptospirose ao homem.</item>
+        <item>5;VIROSE;O diagnóstico da leptospirose, na fase precoce, frequentemente é confundido com "síndrome gripal" ou ______.</item>
+        <item>6;OLHOS;Parte do corpo localizada no rosto que apresenta vermelhidão e sinais de sangramento, esse sinal é conhecido como sufusão conjuntiva, sinal característico da fase precoce da infecção.</item>
+        <item>0;RATICIDAS;Substâncias capazes de eliminar ratos.</item>
+        <item>0;SEPTICEMICA;Nome atribuído à fase aguda da doença Leptospirose, ocorre a reprodução acentuada da bactéria na corrente circulatória.</item>
+        <item>4;ZOONOSE;Doenças de animais transmissíveis ao homem, tipo no qual se enquadra a leptospirose.</item>
+        <item>0;BACTERIA;Agente etiológico da leptospirose.</item>
+    </string-array>
+</resources> 

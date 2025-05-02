@@ -1,0 +1,381 @@
+fileFormatVersion: 2
+guid: 999b3aa920914d0409946e324a1e554c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3292601055755019623
+    second: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_0"
+  - first:
+      213: 801186327624363040
+    second: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_1"
+  - first:
+      213: 3797086633719802730
+    second: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_2"
+  - first:
+      213: -1925997359741928215
+    second: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_3"
+  - first:
+      213: 9217968033738193137
+    second: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_4"
+  - first:
+      213: 6384745338156844932
+    second: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_5"
+  - first:
+      213: -6284605388407317951
+    second: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_6"
+  - first:
+      213: -7444117409787100352
+    second: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_7"
+  - first:
+      213: -3679392332651974846
+    second: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_8"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_0"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 825
+        width: 418
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99a55a4e8c45e42d0800000000000000
+      internalID: -3292601055755019623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_1"
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 987
+        width: 48
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c23f858b26e1b00800000000000000
+      internalID: 801186327624363040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_2"
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 982
+        width: 88
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6ba040fc26f1b430800000000000000
+      internalID: 3797086633719802730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_3"
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 987
+        width: 29
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ecfd3e0b9b7545e0800000000000000
+      internalID: -1925997359741928215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_4"
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 987
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f8fed9761dccef70800000000000000
+      internalID: 9217968033738193137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_5"
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 984
+        width: 49
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4878b26ae0c2b9850800000000000000
+      internalID: 6384745338156844932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_6"
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 807
+        width: 305
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14ad97e42b898c8a0800000000000000
+      internalID: -6284605388407317951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_7"
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 8
+        width: 1011
+        height: 945
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 043c65b08ae21b890800000000000000
+      internalID: -7444117409787100352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "20250425_1424_\xCDcone Doen\xE7a Infantil_simple_compose_01jspzjrdhe4eazca58txcy9qp_8"
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 23
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24fabfeea2c20fcc0800000000000000
+      internalID: -3679392332651974846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
