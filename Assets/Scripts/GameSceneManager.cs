@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameSceneManager : MonoBehaviour
 {
+    [field: SerializeField] public Crossword[] Crosswords { get; private set; }
+    
     public static GameSceneManager Instance { get; private set; }
 
     private void Awake()
@@ -29,9 +30,9 @@ public class GameSceneManager : MonoBehaviour
         SceneManager.LoadScene("CrosswordSelection");
     }
 
-    public void LoadCrosswordGame(string diseaseName)
+    public void LoadCrosswordGame(int crosswordIndex)
     {
-        PlayerPrefs.SetString("SelectedDisease", diseaseName);
+        PlayerPrefs.SetInt("SelectedDisease", crosswordIndex);
         SceneManager.LoadScene("CrosswordGame");
     }
 

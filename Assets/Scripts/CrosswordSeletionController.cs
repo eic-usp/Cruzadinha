@@ -1,21 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class CrosswordSelectionController : MonoBehaviour
 {
     public GameObject crosswordButtonPrefab;
     public Transform gridLayout;
     public Button backButton;
-
-    private List<string> diseases = new List<string>
-    {
-        "Chagas",
-        "Leishmaniose",
-        "Esquistossomose",
-        "Leptospirose",
-        "Malaria"
-    };
 
     void Start()
     {
@@ -25,26 +15,26 @@ public class CrosswordSelectionController : MonoBehaviour
 
     void CreateCrosswordButtons()
     {
-        foreach (string disease in diseases)
+        for (var i = 0; i < GameSceneManager.Instance.Crosswords.Length; i++)
         {
+            Crossword crossword = GameSceneManager.Instance.Crosswords[i];
             GameObject buttonObj = Instantiate(crosswordButtonPrefab, gridLayout);
             Button button = buttonObj.GetComponent<Button>();
             Text buttonText = buttonObj.GetComponentInChildren<Text>();
             
             if (buttonText != null)
             {
-                buttonText.text = disease;
+                buttonText.text = crossword.CrosswordName;
             }
-
-            // Store the disease name in the button's onClick event
-            string diseaseName = disease; // Create a local copy for the closure
-            button.onClick.AddListener(() => OnCrosswordSelected(diseaseName));
+            
+            int selectedIndex = i;
+            button.onClick.AddListener(() => OnCrosswordSelected(selectedIndex));
         }
     }
 
-    void OnCrosswordSelected(string diseaseName)
+    void OnCrosswordSelected(int crosswordIndex)
     {
-        GameSceneManager.Instance.LoadCrosswordGame(diseaseName);
+        GameSceneManager.Instance.LoadCrosswordGame(crosswordIndex);
     }
 
     void OnBackClicked()

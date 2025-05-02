@@ -6,7 +6,7 @@ public class CrosswordData
 {
     public int gridWidth;
     public int gridHeight;
-    public List<CrosswordWord> words = new List<CrosswordWord>();
+    public List<CrosswordWord> words = new();
 
     public class CrosswordWord
     {

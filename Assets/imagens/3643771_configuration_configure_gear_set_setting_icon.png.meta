@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      3643771_configuration_configure_gear_set_setting_icon_0: -1937499656625862173
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

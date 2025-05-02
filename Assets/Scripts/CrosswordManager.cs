@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System.IO;
 
 public class CrosswordManager : MonoBehaviour
 {
-    public GameObject cellPrefab;
+    public CrosswordCell cellPrefab;
     public Transform gridParent;
     public float cellSize = 1f;
     public float spacing = 0.1f;
@@ -13,23 +12,22 @@ public class CrosswordManager : MonoBehaviour
     public Text diseaseTitleText;
     public Button backButton;
 
-    private GameObject[,] grid;
+    private CrosswordCell[,] grid;
     private CrosswordData crosswordData;
-    private List<CrosswordData.CrosswordWord> placedWords = new List<CrosswordData.CrosswordWord>();
-
+    private List<CrosswordData.CrosswordWord> placedWords = new();
     
     void Start()
     {
         // Get selected disease from PlayerPrefs
-        string selectedDisease = PlayerPrefs.GetString("SelectedDisease", "");
-        if (string.IsNullOrEmpty(selectedDisease))
-        {
-            Debug.LogError("No disease selected!");
-            return;
-        }
+        int selectedDisease = PlayerPrefs.GetInt("SelectedDisease", 0);
 
         // Load the XML file from Resources
-        TextAsset xmlFile = Resources.Load<TextAsset>($"CrosswordData/{selectedDisease.ToLower()}_data");
+        // TextAsset xmlFile = Resources.Load<TextAsset>($"CrosswordData/{selectedDisease.ToLower()}_data");
+
+        Debug.Log($"Selected disease: {selectedDisease}");
+        Crossword disease = GameSceneManager.Instance.Crosswords[selectedDisease];
+        TextAsset xmlFile = disease.TextAsset;
+        
         if (xmlFile == null)
         {
             Debug.LogError($"Could not open xml file {xmlFile} for {selectedDisease}");
@@ -40,7 +38,7 @@ public class CrosswordManager : MonoBehaviour
         // Set disease title
         if (diseaseTitleText != null)
         {
-            diseaseTitleText.text = selectedDisease;
+            diseaseTitleText.text = disease.CrosswordName;
         }
 
         // Load and setup crossword
@@ -50,7 +48,9 @@ public class CrosswordManager : MonoBehaviour
             Debug.LogError("Failed to load crossword data from XML");
             return;
         }
-        try{
+        
+        try
+        {
             CreateGrid();
         }
         catch (System.Exception ex)
@@ -75,7 +75,7 @@ public class CrosswordManager : MonoBehaviour
 
     void CreateGrid()
     {
-        grid = new GameObject[crosswordData.gridWidth, crosswordData.gridHeight];
+        grid = new CrosswordCell[crosswordData.gridWidth, crosswordData.gridHeight];
         for (int y = 0; y < crosswordData.gridHeight; y++)
         {
             for (int x = 0; x < crosswordData.gridWidth; x++)
@@ -86,9 +86,12 @@ public class CrosswordManager : MonoBehaviour
                     0
                 );
 
-                GameObject cell = Instantiate(cellPrefab, gridParent);
+                CrosswordCell cell = Instantiate(cellPrefab, gridParent);
+                grid[x, y] = cell;
+                
                 RectTransform rect = cell.GetComponent<RectTransform>();
-                if (rect != null){
+                if (rect != null)
+                {
                     rect.anchoredPosition = new Vector2(
                         x * (cellSize + spacing),
                         -y * (cellSize + spacing) // y negativo para alinhar de cima pra baixo
@@ -125,7 +128,7 @@ public class CrosswordManager : MonoBehaviour
                     int x = word.startX + (word.isHorizontal ? i : 0);
                     int y = word.startY + (word.isHorizontal ? 0 : i);
 
-                    CrosswordCell cell = grid[x, y].GetComponent<CrosswordCell>();
+                    CrosswordCell cell = grid[x, y];
                     if (cell != null)
                     {
                         cell.SetLetter(word.word[i]);
@@ -166,7 +169,7 @@ public class CrosswordManager : MonoBehaviour
 
             if (x < crosswordData.gridWidth && y < crosswordData.gridHeight)
             {
-                CrosswordCell cell = grid[x, y].GetComponent<CrosswordCell>();
+                CrosswordCell cell = grid[x, y];
                 if (cell == null || cell.letterText.text != word.word[i].ToString())
                 {
                     isCorrect = false;
@@ -183,7 +186,7 @@ public class CrosswordManager : MonoBehaviour
             {
                 int x = word.startX + (word.isHorizontal ? i : 0);
                 int y = word.startY + (word.isHorizontal ? 0 : i);
-                grid[x, y].GetComponent<CrosswordCell>().MarkCorrect();
+                grid[x, y].MarkCorrect();
             }
         }
     }

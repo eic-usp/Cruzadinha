@@ -1,10 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 {
-    public Text letterText; // aqui ele define, certo? nop, elle só inicializa aqui, mas sem nenhum valor ainda
+    public TextMeshProUGUI letterText; // aqui ele define, certo? nop, elle só inicializa aqui, mas sem nenhum valor ainda
     public Image backgroundImage;
     public bool isSelected = false;
     public int x, y;
@@ -23,7 +24,7 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
             backgroundImage = GetComponent<Image>();
         
         if (letterText == null)
-            letterText = GetComponentInChildren<Text>(); //aq ele pega o texto
+            letterText = GetComponentInChildren<TextMeshProUGUI>(); //aq ele pega o texto
 
         Debug.Log("Letra pegada", letterText);
 
