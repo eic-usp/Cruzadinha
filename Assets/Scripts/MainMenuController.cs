@@ -9,20 +9,18 @@ public class MainMenuController : MonoBehaviour
 
     void Start()
     {
-        // Set up button listeners
         startButton.onClick.AddListener(OnStartClicked);
         settingsButton.onClick.AddListener(OnSettingsClicked);
-
-        // You can customize the game title here
         gameTitle.text = "Cruzadinhas";
     }
 
-    void OnStartClicked()
+    public void OnStartClicked()
     {
         GameSceneManager.Instance.LoadCrosswordSelection();
+        Debug.Log("Iniciando o jogo...");
     }
 
-    void OnSettingsClicked()
+    public void OnSettingsClicked()
     {
         GameSceneManager.Instance.LoadSettings();
     }

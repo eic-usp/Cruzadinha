@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 {
-    public TextMeshProUGUI letterText; // aqui ele define, certo? nop, elle só inicializa aqui, mas sem nenhum valor ainda
+    public TextMeshProUGUI letterText;
     public Image backgroundImage;
     public bool isSelected = false;
     public int x, y;
