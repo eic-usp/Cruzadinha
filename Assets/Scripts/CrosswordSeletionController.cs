@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,7 @@ public class CrosswordSelectionController : MonoBehaviour
             Crossword crossword = GameSceneManager.Instance.Crosswords[i];
             GameObject buttonObj = Instantiate(crosswordButtonPrefab, gridLayout);
             Button button = buttonObj.GetComponent<Button>();
-            Text buttonText = buttonObj.GetComponentInChildren<Text>();
+            TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
             
             if (buttonText != null)
             {

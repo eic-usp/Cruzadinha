@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 {
+    public char letter;
     public TextMeshProUGUI letterText;
     public Image backgroundImage;
     public bool isSelected = false;
@@ -23,10 +24,12 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         if (backgroundImage == null)
             backgroundImage = GetComponent<Image>();
         
+        backgroundImage.enabled = letter != default;
+        
         if (letterText == null)
             letterText = GetComponentInChildren<TextMeshProUGUI>(); //aq ele pega o texto
 
-        Debug.Log("Letra pegada", letterText);
+        // Debug.Log("Letra pegada", letterText);
 
         crosswordManager = FindFirstObjectByType<CrosswordManager>();
     }
@@ -52,13 +55,12 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void SetLetter(char letter)
+    public void SetLetter(char value)
     {
-        if (letterText != null)
-        {
-            letterText.text = letter.ToString();
-            isLocked = true;
-        }
+        backgroundImage.enabled = true;
+        letter = value; 
+        letterText.text = value.ToString();
+        isLocked = true;
     }
 
     public void MarkCorrect()

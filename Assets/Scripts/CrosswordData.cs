@@ -6,7 +6,8 @@ public class CrosswordData
 {
     public int gridWidth;
     public int gridHeight;
-    public List<CrosswordWord> words = new();
+    public List<CrosswordWord> horizontalWords = new();
+    public List<CrosswordWord> verticalWords = new();
 
     public class CrosswordWord
     {
@@ -51,29 +52,66 @@ public class CrosswordData
                 bool isHorizontal = arrayName.Contains("horizontal");
                 Debug.Log($"Processing array: {arrayName} (horizontal: {isHorizontal})");
                 
-                foreach (XmlNode item in array.ChildNodes)
+                for (var i = 0; i < array.ChildNodes.Count; i++)
                 {
+                    var item = array.ChildNodes[i];
+                    
                     if (string.IsNullOrEmpty(item.InnerText)) continue;
 
                     string[] parts = item.InnerText.Split(';');
                     if (parts.Length >= 3)
                     {
+                        var startIndex = int.Parse(parts[0]);
+
+                        // CrosswordWord wH = null, wV = null;
+                        //
+                        // if (isHorizontal)
+                        // {
+                        //     wH = new CrosswordWord
+                        //     {
+                        //         startX = startIndex,
+                        //         startY = i,
+                        //         word = parts[1],
+                        //         hint = parts[2],
+                        //         isHorizontal = isHorizontal
+                        //     };
+                        // }
+                        // else
+                        // {
+                        //     wV = new CrosswordWord
+                        //     {
+                        //         startX = i,
+                        //         startY = startIndex,
+                        //         word = parts[1],
+                        //         hint = parts[2],
+                        //         isHorizontal = isHorizontal
+                        //     };
+                        // }
+
                         CrosswordWord word = new CrosswordWord
                         {
-                            startX = int.Parse(parts[0]),
+                            startX = isHorizontal ? startIndex : i,
+                            startY = isHorizontal ? i : startIndex,
                             word = parts[1],
                             hint = parts[2],
                             isHorizontal = isHorizontal
                         };
 
-                        word.startY = 0;
-                        data.words.Add(word);
+                        if (isHorizontal)
+                        {
+                            data.horizontalWords.Add(word);
+                        }
+                        else
+                        {
+                            data.verticalWords.Add(word);
+                        }
+                        
                         Debug.Log($"Added word: {word.word} at position ({word.startX}, {word.startY})");
                     }
                 }
             }
 
-            Debug.Log($"Total words loaded: {data.words.Count}");
+            Debug.Log($"Total words loaded: {data.horizontalWords.Count}");
             return data;
         }
         catch (System.Exception e)

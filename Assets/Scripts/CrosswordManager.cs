@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class CrosswordManager : MonoBehaviour
 {
@@ -103,8 +104,25 @@ public class CrosswordManager : MonoBehaviour
 
     void PlaceWords()
     {
-        foreach (CrosswordData.CrosswordWord word in crosswordData.words)
+        var words = new List<CrosswordData.CrosswordWord>();
+
+        var hCount = 5;
+        var hRangeStart = Random.Range(0, crosswordData.horizontalWords.Count - hCount);
+        var hRandomRange = crosswordData.horizontalWords.GetRange(hRangeStart, hCount);
+        
+        var vCount = 5;
+        var vRangeStart = Random.Range(0, crosswordData.verticalWords.Count - vCount);
+        var vRandomRange = crosswordData.verticalWords.GetRange(vRangeStart, vCount);
+        
+        words.AddRange(hRandomRange);
+        words.AddRange(vRandomRange);
+        
+        words.Shuffle();
+        
+        foreach (CrosswordData.CrosswordWord word in words)
         {
+            Debug.Log($"WORD: {word.word}");
+            
             bool canPlace = true;
             
             // Check if word can be placed
@@ -115,6 +133,18 @@ public class CrosswordManager : MonoBehaviour
 
                 if (x >= crosswordData.gridWidth || y >= crosswordData.gridHeight)
                 {
+                    canPlace = false;
+                    break;
+                }
+                
+                // Debug.Log($"Is horizontal: {word.isHorizontal}");
+                // Debug.Log($"Grid[{x},{y}]: {(grid[x,y] == null ? "null" : grid[x,y].letter)}");
+                // Debug.Log($"Word[i] = Word[{i}]: {word.word[i]}");
+                // Debug.Log($"X: {x}, Y: {y}. I: {i}");
+                
+                if (grid[x,y] != null && grid[x,y].letter != default && grid[x,y].letter != word.word[i])
+                {
+                    Debug.Log($"Grid[{x},{y}] é {grid[x,y].letter}. Word[{i}] é {word.word[i]}");
                     canPlace = false;
                     break;
                 }
@@ -129,6 +159,9 @@ public class CrosswordManager : MonoBehaviour
                     int y = word.startY + (word.isHorizontal ? 0 : i);
 
                     CrosswordCell cell = grid[x, y];
+                    
+                    Debug.Log($"Placing {word.word[i]} at ({x},{y}) [{word.word}]");
+                    
                     if (cell != null)
                     {
                         cell.SetLetter(word.word[i]);
