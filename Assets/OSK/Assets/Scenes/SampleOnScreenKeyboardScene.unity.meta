@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0003fdea0258f7f47a8e6f622975d513
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 148532
+  packageName: OSK OnScreenKeyboard Rus/Eng
+  packageVersion: 1.0
+  assetPath: Assets/OSK/Assets/Scenes/SampleOnScreenKeyboardScene.unity
+  uploadId: 318323
