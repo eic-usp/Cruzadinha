@@ -93,7 +93,7 @@ public class CrosswordData
                             startX = isHorizontal ? startIndex : i,
                             startY = isHorizontal ? i : startIndex,
                             word = parts[1],
-                            hint = parts[2],
+                            hint = parts[2], // armazena as dicas 
                             isHorizontal = isHorizontal
                         };
 

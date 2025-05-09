@@ -11,7 +11,6 @@ public class MainMenuController : MonoBehaviour
     {
         startButton.onClick.AddListener(OnStartClicked);
         settingsButton.onClick.AddListener(OnSettingsClicked);
-        gameTitle.text = "Cruzadinhas";
     }
 
     public void OnStartClicked()
