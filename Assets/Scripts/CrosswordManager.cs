@@ -102,6 +102,7 @@ public class CrosswordManager : MonoBehaviour
         }
     }
 
+
     void PlaceWords()
     {
         var words = new List<CrosswordData.CrosswordWord>();
@@ -203,7 +204,7 @@ public class CrosswordManager : MonoBehaviour
             if (x < crosswordData.gridWidth && y < crosswordData.gridHeight)
             {
                 CrosswordCell cell = grid[x, y];
-                if (cell == null || cell.letterText.text != word.word[i].ToString())
+                if (cell == null || cell.letterInputField.text != word.word[i].ToString())
                 {
                     isCorrect = false;
                     break;

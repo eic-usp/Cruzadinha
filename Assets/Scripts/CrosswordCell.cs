@@ -1,4 +1,4 @@
-using TMPro;
+using TMPro; // Para usar o TextMeshPro
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 {
     public char letter;
-    public TextMeshProUGUI letterText;
+    public TMP_InputField letterInputField; // Substituído para usar InputField
     public Image backgroundImage;
     public bool isSelected = false;
     public int x, y;
@@ -23,15 +23,36 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
     {
         if (backgroundImage == null)
             backgroundImage = GetComponent<Image>();
-        
-        backgroundImage.enabled = letter != default;
-        
-        if (letterText == null)
-            letterText = GetComponentInChildren<TextMeshProUGUI>(); //aq ele pega o texto
 
-        // Debug.Log("Letra pegada", letterText);
+        backgroundImage.enabled = letter != default;
+
+        // Inicializa o InputField
+        if (letterInputField == null)
+            letterInputField = GetComponentInChildren<TMP_InputField>(); // Aqui pega o InputField
+            Debug.Log("TMP_InputField atribuído: " + (letterInputField != null));  // Verifique se o InputField foi atribuído
+
+
+        // Desativa a possibilidade de digitar se a célula estiver bloqueada
+        letterInputField.interactable = !isLocked;
 
         crosswordManager = FindFirstObjectByType<CrosswordManager>();
+        
+        // Configura o InputField para que ele mostre o valor da letra, mas não seja editável caso esteja bloqueado
+        if (letterInputField != null)
+        {
+            letterInputField.text = letter.ToString();
+            letterInputField.onValueChanged.AddListener(OnInputValueChanged); // Adiciona ouvinte para alterações
+        }
+    }
+
+    // Esse método é chamado toda vez que o valor do InputField é alterado
+    private void OnInputValueChanged(string newText)
+    {
+        // Verifica se a nova letra é válida
+        if (newText.Length > 0)
+        {
+            letter = newText[0]; // Pega a primeira letra inserida
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -58,9 +79,10 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
     public void SetLetter(char value)
     {
         backgroundImage.enabled = true;
-        letter = value; 
-        letterText.text = value.ToString();
+        letter = value;
+        letterInputField.text = value.ToString(); // Coloca a letra na célula
         isLocked = true;
+        letterInputField.interactable = false; // Desativa a interação com o InputField
     }
 
     public void MarkCorrect()
@@ -69,6 +91,7 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         {
             backgroundImage.color = correctColor;
             isLocked = true;
+            letterInputField.interactable = false; // Desativa a interação quando correto
         }
     }
 
@@ -85,13 +108,13 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         if (isLocked) return;
 
         isSelected = false;
-        if (letterText != null)
+        if (letterInputField != null)
         {
-            letterText.text = "";
+            letterInputField.text = ""; // Limpa o campo de texto
         }
         if (backgroundImage != null)
         {
             backgroundImage.color = normalColor;
         }
     }
-} 
+}
