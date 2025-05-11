@@ -6,22 +6,22 @@ public class CrosswordData
 {
     public int gridWidth;
     public int gridHeight;
-    public List<CrosswordWord> horizontalWords = new();
-    public List<CrosswordWord> verticalWords = new();
+    public List<CrosswordWord> words = new();
 
     public class CrosswordWord
     {
+        public int row;
+        public int col;
         public string word;
-        public string hint;
+        public string clue;
         public bool isHorizontal;
-        public int startX;
-        public int startY;
     }
 
     public static CrosswordData LoadFromXML(TextAsset xmlFile)
     {
         try
         {
+            // Criar a instância de CrosswordData para armazenar os dados
             CrosswordData data = new CrosswordData();
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xmlFile.text);
@@ -42,76 +42,35 @@ public class CrosswordData
             data.gridHeight = int.Parse(heightNode.InnerText);
             Debug.Log($"Grid dimensions: {data.gridWidth}x{data.gridHeight}");
 
-            // Process all word arrays
-            XmlNodeList wordArrays = xmlDoc.SelectNodes("//string-array");
+            // Processar todas as palavras do arquivo XML
+            XmlNodeList wordArrays = xmlDoc.SelectNodes("//item");
             Debug.Log($"Found {wordArrays.Count} word arrays");
 
-            foreach (XmlNode array in wordArrays)
+            // Carregar as palavras horizontais e verticais
+            foreach (XmlNode wordNode in wordArrays)
             {
-                string arrayName = array.Attributes["name"].Value;
-                bool isHorizontal = arrayName.Contains("horizontal");
-                Debug.Log($"Processing array: {arrayName} (horizontal: {isHorizontal})");
+                int row = int.Parse(wordNode.Attributes["row"].Value);
+                int col = int.Parse(wordNode.Attributes["col"].Value);
+                string word = wordNode["word"].InnerText;
+                string clue = wordNode["clue"].InnerText;
+                string dir = wordNode.Attributes["dir"].Value.ToLower();  // Acessar o atributo "dir"
                 
-                for (var i = 0; i < array.ChildNodes.Count; i++)
+                CrosswordWord crosswordWord = new CrosswordWord
                 {
-                    var item = array.ChildNodes[i];
-                    
-                    if (string.IsNullOrEmpty(item.InnerText)) continue;
+                    row = row,
+                    col = col,
+                    word = word,
+                    clue = clue,
+                    isHorizontal = dir == "h",
+                };
 
-                    string[] parts = item.InnerText.Split(';');
-                    if (parts.Length >= 3)
-                    {
-                        var startIndex = int.Parse(parts[0]);
+                Debug.Log("Adicionado a palavra: " + crosswordWord.word + " que é " + crosswordWord.isHorizontal);
 
-                        // CrosswordWord wH = null, wV = null;
-                        //
-                        // if (isHorizontal)
-                        // {
-                        //     wH = new CrosswordWord
-                        //     {
-                        //         startX = startIndex,
-                        //         startY = i,
-                        //         word = parts[1],
-                        //         hint = parts[2],
-                        //         isHorizontal = isHorizontal
-                        //     };
-                        // }
-                        // else
-                        // {
-                        //     wV = new CrosswordWord
-                        //     {
-                        //         startX = i,
-                        //         startY = startIndex,
-                        //         word = parts[1],
-                        //         hint = parts[2],
-                        //         isHorizontal = isHorizontal
-                        //     };
-                        // }
-
-                        CrosswordWord word = new CrosswordWord
-                        {
-                            startX = isHorizontal ? startIndex : i,
-                            startY = isHorizontal ? i : startIndex,
-                            word = parts[1],
-                            hint = parts[2], // armazena as dicas 
-                            isHorizontal = isHorizontal
-                        };
-
-                        if (isHorizontal)
-                        {
-                            data.horizontalWords.Add(word);
-                        }
-                        else
-                        {
-                            data.verticalWords.Add(word);
-                        }
-                        
-                        Debug.Log($"Added word: {word.word} at position ({word.startX}, {word.startY})");
-                    }
-                }
+                // Adicionar a palavra à lista
+                data.words.Add(crosswordWord);
             }
 
-            Debug.Log($"Total words loaded: {data.horizontalWords.Count}");
+            Debug.Log($"Total words loaded: {data.words.Count}");
             return data;
         }
         catch (System.Exception e)

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18cf37761f6b6744a35603dd4ab38b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 6854838840100396697, guid: f7eabbaeb80fd5f448753783b51bdb6e, type: 3}
+  cellPrefab: {fileID: 2603075303759650251, guid: f7eabbaeb80fd5f448753783b51bdb6e, type: 3}
   gridParent: {fileID: 3121867063819998774}
   cellSize: 1
   spacing: 0.1

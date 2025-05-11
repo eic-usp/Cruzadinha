@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Xml.Linq;
 
 public class CrosswordManager : MonoBehaviour
 {
@@ -14,27 +14,32 @@ public class CrosswordManager : MonoBehaviour
     public Button backButton;
 
     private CrosswordCell[,] grid;
-    private CrosswordData crosswordData;
+    private CrosswordData crosswordData = new CrosswordData();
     private List<CrosswordData.CrosswordWord> placedWords = new();
-    
+
+
     void Start()
     {
         // Get selected disease from PlayerPrefs
         int selectedDisease = PlayerPrefs.GetInt("SelectedDisease", 0);
 
-        // Load the XML file from Resources
-        // TextAsset xmlFile = Resources.Load<TextAsset>($"CrosswordData/{selectedDisease.ToLower()}_data");
-
         Debug.Log($"Selected disease: {selectedDisease}");
         Crossword disease = GameSceneManager.Instance.Crosswords[selectedDisease];
         TextAsset xmlFile = disease.TextAsset;
-        
+
         if (xmlFile == null)
         {
             Debug.LogError($"Could not open xml file {xmlFile} for {selectedDisease}");
             return;
         }
 
+        // Carregar dados do crossword do XML
+        crosswordData = CrosswordData.LoadFromXML(xmlFile);
+        if (crosswordData == null)
+        {
+            Debug.LogError("Failed to load crossword data from XML");
+            return;
+        }
 
         // Set disease title
         if (diseaseTitleText != null)
@@ -42,14 +47,6 @@ public class CrosswordManager : MonoBehaviour
             diseaseTitleText.text = disease.CrosswordName;
         }
 
-        // Load and setup crossword
-        crosswordData = CrosswordData.LoadFromXML(xmlFile);
-        if (crosswordData == null)
-        {
-            Debug.LogError("Failed to load crossword data from XML");
-            return;
-        }
-        
         try
         {
             CreateGrid();
@@ -59,7 +56,6 @@ public class CrosswordManager : MonoBehaviour
             Debug.LogError("Erro ao criar grid: " + ex.Message + "\n" + ex.StackTrace);
         }
 
-        //CreateGrid();
         PlaceWords();
 
         // Setup back button
@@ -74,78 +70,103 @@ public class CrosswordManager : MonoBehaviour
         GameSceneManager.Instance.LoadCrosswordSelection();
     }
 
+
     void CreateGrid()
     {
-        grid = new CrosswordCell[crosswordData.gridWidth, crosswordData.gridHeight];
-        for (int y = 0; y < crosswordData.gridHeight; y++)
+        int gridWidth = crosswordData.gridWidth;
+        int gridHeight = crosswordData.gridHeight;
+
+        grid = new CrosswordCell[gridWidth, gridHeight];
+
+        for (int y = 0; y < gridHeight; y++)
         {
-            for (int x = 0; x < crosswordData.gridWidth; x++)
+            for (int x = 0; x < gridWidth; x++)
             {
-                Vector3 position = new Vector3(
-                    x * (cellSize + spacing),
-                    y * (cellSize + spacing),
-                    0
-                );
+                Vector3 position = new Vector3(x * (cellSize + spacing), -y * (cellSize + spacing), 0);
 
                 CrosswordCell cell = Instantiate(cellPrefab, gridParent);
                 grid[x, y] = cell;
-                
+
                 RectTransform rect = cell.GetComponent<RectTransform>();
                 if (rect != null)
                 {
-                    rect.anchoredPosition = new Vector2(
-                        x * (cellSize + spacing),
-                        -y * (cellSize + spacing) // y negativo para alinhar de cima pra baixo
-                    );
+                    rect.anchoredPosition = new Vector2(x * (cellSize + spacing), -y * (cellSize + spacing));
+                }
+
+                // Verifica se a célula faz parte de alguma palavra
+                bool isPartOfWord = false;
+                foreach (var word in crosswordData.words)
+                {
+                    // Se a célula faz parte da palavra
+                    if (word.isHorizontal)
+                    {
+                        if (y == word.row && x >= word.col && x < word.col + word.word.Length)
+                        {
+                            isPartOfWord = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (x == word.col && y >= word.row && y < word.row + word.word.Length)
+                        {
+                            isPartOfWord = true;
+                            break;
+                        }
+                    }
+                }
+
+                // Se a célula não faz parte de nenhuma palavra, torná-la invisível
+                if (!isPartOfWord)
+                {
+                    Debug.Log("não faz parte");
+                    var image = cell.GetComponentInChildren<Image>(); // Para a imagem (se houver)
+                    var text = cell.GetComponentInChildren<Text>(); // Para o texto (se houver)
+                    var inputField = cell.GetComponentInChildren<InputField>(); // Para o campo de input (se houver)
+
+                    if (image != null)
+                    {
+                        Debug.Log("image pega");
+                        image.color = new Color(1, 1, 1, 0); // Torna a imagem invisível
+                    }
+
+                    // Tornar o texto invisível
+                    if (text != null)
+                    {
+                        text.enabled = false; // Torna o texto invisível
+                    }
+
+                    // Caso queira esconder o input, mas deixar ele funcional se necessário:
+                    if (inputField != null)
+                    {
+                        inputField.enabled = false; // Opcional: esconder o campo de input
+                    }
                 }
             }
         }
     }
 
-
     void PlaceWords()
     {
-        var words = new List<CrosswordData.CrosswordWord>();
-
-        var hCount = 5;
-        var hRangeStart = Random.Range(0, crosswordData.horizontalWords.Count - hCount);
-        var hRandomRange = crosswordData.horizontalWords.GetRange(hRangeStart, hCount);
-        
-        var vCount = 5;
-        var vRangeStart = Random.Range(0, crosswordData.verticalWords.Count - vCount);
-        var vRandomRange = crosswordData.verticalWords.GetRange(vRangeStart, vCount);
-        
-        words.AddRange(hRandomRange);
-        words.AddRange(vRandomRange);
-        
-        words.Shuffle();
-        
-        foreach (CrosswordData.CrosswordWord word in words)
+        foreach (CrosswordData.CrosswordWord word in  crosswordData.words)
         {
-            Debug.Log($"WORD: {word.word}");
-            
             bool canPlace = true;
-            
-            // Check if word can be placed
+
+            // Verificar se a palavra pode ser colocada
             for (int i = 0; i < word.word.Length; i++)
             {
-                int x = word.startX + (word.isHorizontal ? i : 0);
-                int y = word.startY + (word.isHorizontal ? 0 : i);
+                int x = word.col + (word.isHorizontal ? i : 0);
+                int y = word.row + (word.isHorizontal ? 0 : i);
 
-                if (x >= crosswordData.gridWidth || y >= crosswordData.gridHeight)
+                if (x >= grid.GetLength(0) || y >= grid.GetLength(1))
                 {
                     canPlace = false;
                     break;
                 }
-                
-                // Debug.Log($"Is horizontal: {word.isHorizontal}");
-                // Debug.Log($"Grid[{x},{y}]: {(grid[x,y] == null ? "null" : grid[x,y].letter)}");
-                // Debug.Log($"Word[i] = Word[{i}]: {word.word[i]}");
-                // Debug.Log($"X: {x}, Y: {y}. I: {i}");
-                
-                if (grid[x,y] != null && grid[x,y].letter != default && grid[x,y].letter != word.word[i])
+
+                // Se a célula já tiver uma letra que não corresponde, não pode colocar a palavra
+                if (grid[x, y] != null && grid[x, y].letter != default && grid[x, y].letter != word.word[i])
                 {
-                    Debug.Log($"Grid[{x},{y}] é {grid[x,y].letter}. Word[{i}] é {word.word[i]}");
                     canPlace = false;
                     break;
                 }
@@ -154,38 +175,37 @@ public class CrosswordManager : MonoBehaviour
             if (canPlace)
             {
                 placedWords.Add(word);
+                // Coloca a palavra no grid
                 for (int i = 0; i < word.word.Length; i++)
                 {
-                    int x = word.startX + (word.isHorizontal ? i : 0);
-                    int y = word.startY + (word.isHorizontal ? 0 : i);
+                    int x = word.col + (word.isHorizontal ? i : 0);
+                    int y = word.row + (word.isHorizontal ? 0 : i);
 
                     CrosswordCell cell = grid[x, y];
-                    
-                    Debug.Log($"Placing {word.word[i]} at ({x},{y}) [{word.word}]");
-                    
-                    if (cell != null)
-                    {
-                        cell.SetLetter(word.word[i]);
-                    }
+                    cell.SetLetter(word.word[i]);
                 }
+            }
+            else
+            {
+                Debug.LogWarning($"Cannot place word '{word.word}' at ({word.row},{word.col})");
             }
         }
     }
 
     public void ShowHint(CrosswordCell cell)
     {
-        foreach (CrosswordData.CrosswordWord word in placedWords)
+        foreach (CrosswordData.CrosswordWord word in placedWords) 
         {
             for (int i = 0; i < word.word.Length; i++)
             {
-                int x = word.startX + (word.isHorizontal ? i : 0);
-                int y = word.startY + (word.isHorizontal ? 0 : i);
+                int x = word.col + (word.isHorizontal ? i : 0);
+                int y = word.row + (word.isHorizontal ? 0 : i);
 
                 if (x == cell.x && y == cell.y)
                 {
                     if (hintText != null)
                     {
-                        hintText.text = word.hint;
+                        hintText.text = word.clue; 
                     }
                     return;
                 }
@@ -198,8 +218,8 @@ public class CrosswordManager : MonoBehaviour
         bool isCorrect = true;
         for (int i = 0; i < word.word.Length; i++)
         {
-            int x = word.startX + (word.isHorizontal ? i : 0);
-            int y = word.startY + (word.isHorizontal ? 0 : i);
+            int x = word.col + (word.isHorizontal ? i : 0);
+            int y = word.row + (word.isHorizontal ? 0 : i);
 
             if (x < crosswordData.gridWidth && y < crosswordData.gridHeight)
             {
@@ -215,13 +235,14 @@ public class CrosswordManager : MonoBehaviour
         if (isCorrect)
         {
             Debug.Log($"Word '{word.word}' is correct!");
-            // Mark cells as correct
+            // Marcar células como corretas
             for (int i = 0; i < word.word.Length; i++)
             {
-                int x = word.startX + (word.isHorizontal ? i : 0);
-                int y = word.startY + (word.isHorizontal ? 0 : i);
+                int x = word.col + (word.isHorizontal ? i : 0);
+                int y = word.row + (word.isHorizontal ? 0 : i);
                 grid[x, y].MarkCorrect();
             }
         }
     }
-} 
+}
+

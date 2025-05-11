@@ -21,16 +21,16 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        if (backgroundImage == null)
+        if (backgroundImage == null){
             backgroundImage = GetComponent<Image>();
+        }
 
         backgroundImage.enabled = letter != default;
 
         // Inicializa o InputField
-        if (letterInputField == null)
+        if (letterInputField == null){
             letterInputField = GetComponentInChildren<TMP_InputField>(); // Aqui pega o InputField
-            Debug.Log("TMP_InputField atribuído: " + (letterInputField != null));  // Verifique se o InputField foi atribuído
-
+        }
 
         // Desativa a possibilidade de digitar se a célula estiver bloqueada
         letterInputField.interactable = !isLocked;
