@@ -70,7 +70,6 @@ public class CrosswordManager : MonoBehaviour
         GameSceneManager.Instance.LoadCrosswordSelection();
     }
 
-
     void CreateGrid()
     {
         int gridWidth = crosswordData.gridWidth;
@@ -116,18 +115,17 @@ public class CrosswordManager : MonoBehaviour
                     }
                 }
 
-                // Se a célula não faz parte de nenhuma palavra, torná-la invisível
+                // Se a célula não faz parte de nenhuma palavra, altere a cor do fundo
                 if (!isPartOfWord)
                 {
-                    Debug.Log("não faz parte");
                     var image = cell.GetComponentInChildren<Image>(); // Para a imagem (se houver)
                     var text = cell.GetComponentInChildren<Text>(); // Para o texto (se houver)
-                    var inputField = cell.GetComponentInChildren<InputField>(); // Para o campo de input (se houver)
+                    var letterInputField = cell.GetComponentInChildren<InputField>(); // Para o campo de input (se houver)
 
                     if (image != null)
                     {
-                        Debug.Log("image pega");
-                        image.color = new Color(1, 1, 1, 0); // Torna a imagem invisível
+                        // Alterar a cor da imagem dentro do InputField (definir cor de fundo como #12806A)
+                        image.color = new Color(18f / 255f, 128f / 255f, 106f / 255f); // Hex: #12806A
                     }
 
                     // Tornar o texto invisível
@@ -135,16 +133,50 @@ public class CrosswordManager : MonoBehaviour
                     {
                         text.enabled = false; // Torna o texto invisível
                     }
-
-                    // Caso queira esconder o input, mas deixar ele funcional se necessário:
-                    if (inputField != null)
+                    
+                    // Se o campo de input for necessário, ainda pode ser usado mas invisível
+                    if (letterInputField != null)
                     {
-                        inputField.enabled = false; // Opcional: esconder o campo de input
+                        Debug.Log("lalalalala" + letterInputField);
+                        // Acessar a Image dentro do letterInputField e alterar
+                        var inputImage = letterInputField.GetComponent<Image>();
+                        Debug.Log("image componente" + inputImage);
+                        if (inputImage != null)
+                        {
+                            // Alterar a cor do fundo do InputField, se desejado
+                            inputImage.color = new Color(18f / 255f, 128f / 255f, 106f / 255f); // Hex: #12806A
+                        }
+
+                        letterInputField.enabled = false; // Torna o campo de input invisível, mas sem desativá-lo completamente
+                    }
+                }
+                else
+                {
+                    Debug.Log("lelelelel");
+                    // Se a célula faz parte de uma palavra, você pode reverter as mudanças de visibilidade
+                    var image = cell.GetComponentInChildren<Image>();
+                    if (image != null)
+                    {
+                        image.color = Color.white; // Reseta a cor da célula para a cor original (ou qualquer outra cor desejada)
+                    }
+
+                    var text = cell.GetComponentInChildren<Text>();
+                    if (text != null)
+                    {
+                        text.enabled = true; // Torna o texto visível novamente
+                    }
+
+                    var letterInputField = cell.GetComponentInChildren<InputField>();
+                    if (letterInputField != null)
+                    {
+                        letterInputField.enabled = true; // Torna o campo de input visível e funcional novamente
                     }
                 }
             }
         }
     }
+
+
 
     void PlaceWords()
     {
