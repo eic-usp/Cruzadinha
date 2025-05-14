@@ -36,6 +36,12 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         letterInputField.interactable = !isLocked;
 
         crosswordManager = FindFirstObjectByType<CrosswordManager>();
+
+        // Seta como inativo as células que não tem letra 
+        if (letterInputField != null && letterInputFiWeld.enabled && letter == default)
+        {
+            letterInputField.gameObject.SetActive(false);
+        }
         
         // Configura o InputField para que ele mostre o valor da letra, mas não seja editável caso esteja bloqueado
         if (letterInputField != null)
@@ -105,12 +111,14 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
     public void ResetCell()
     {
+        
         if (isLocked) return;
 
         isSelected = false;
         if (letterInputField != null)
         {
             letterInputField.text = ""; // Limpa o campo de texto
+            letterInputField.gameObject.SetActive(true); // Reativa o campo de input quando a célula é resetada
         }
         if (backgroundImage != null)
         {
