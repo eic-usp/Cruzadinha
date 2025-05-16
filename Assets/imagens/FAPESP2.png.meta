@@ -273,7 +273,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FAPESP2_0: 4653123064983657585
+      FAPESP2_1: 8493015756862361319
+      FAPESP2_2: -8393822098798542190
+      FAPESP2_3: 7785614081967982920
+      FAPESP2_4: 3407685287281641120
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

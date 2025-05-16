@@ -256,7 +256,7 @@ public class CrosswordManager : MonoBehaviour
             if (x < crosswordData.gridWidth && y < crosswordData.gridHeight)
             {
                 CrosswordCell cell = grid[x, y];
-                if (cell == null || cell.letterInputField.text != word.word[i].ToString())
+                if (cell == null || cell.letter != cell.expectedLetter)
                 {
                     isCorrect = false;
                     break;
