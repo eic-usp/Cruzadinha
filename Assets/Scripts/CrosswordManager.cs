@@ -137,7 +137,6 @@ public class CrosswordManager : MonoBehaviour
                     // Se o campo de input for necessário, ainda pode ser usado mas invisível
                     if (letterInputField != null)
                     {
-                        Debug.Log("lalalalala" + letterInputField);
                         // Acessar a Image dentro do letterInputField e alterar
                         var inputImage = letterInputField.GetComponent<Image>();
                         Debug.Log("image componente" + inputImage);
@@ -152,7 +151,6 @@ public class CrosswordManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("lelelelel");
                     // Se a célula faz parte de uma palavra, você pode reverter as mudanças de visibilidade
                     var image = cell.GetComponentInChildren<Image>();
                     if (image != null)
@@ -215,7 +213,9 @@ public class CrosswordManager : MonoBehaviour
 
                     CrosswordCell cell = grid[x, y];
                     cell.SetLetter(word.word[i]);
+                    Debug.Log($"botando: '{x}, {y}', palabra '{word.word[i]} de {word.word}'");
                 }
+
             }
             else
             {
