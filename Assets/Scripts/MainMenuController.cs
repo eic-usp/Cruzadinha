@@ -22,5 +22,6 @@ public class MainMenuController : MonoBehaviour
     public void OnSettingsClicked()
     {
         GameSceneManager.Instance.LoadSettings();
+        Debug.Log("Socorro deus");
     }
 } 

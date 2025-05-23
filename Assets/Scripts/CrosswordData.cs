@@ -64,7 +64,7 @@ public class CrosswordData
                     isHorizontal = dir == "h",
                 };
 
-                Debug.Log("Adicionado a palavra: " + crosswordWord.word + " que é " + crosswordWord.isHorizontal);
+               // Debug.Log("Adicionado a palavra: " + crosswordWord.word + " que é " + crosswordWord.isHorizontal);
 
                 // Adicionar a palavra à lista
                 data.words.Add(crosswordWord);

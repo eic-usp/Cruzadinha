@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CrosswordCell : MonoBehaviour, IPointerClickHandler
+public class CrosswordCell : MonoBehaviour
 {
     public char letter;
-    public char expectedLetter; 
+    public char expectedLetter;
+    public string clue;
 
 
     public TMP_InputField letterInputField; // Substituído para usar InputField
@@ -47,12 +48,13 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         {
             letterInputField.gameObject.SetActive(false);
         }
-        
+
         // Configura o InputField para que ele mostre o valor da letra, mas não seja editável caso esteja bloqueado
         if (letterInputField != null)
         {
             letterInputField.text = ""; // deixa vazio inicialmente 
             letterInputField.onValueChanged.AddListener(OnInputValueChanged); // Adiciona ouvinte para alterações
+            letterInputField.onSelect.AddListener(OnInputSelected);
         }
     }
 
@@ -82,7 +84,7 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnInputSelected(string text)
     {
         if (isLocked) return;
 
@@ -117,7 +119,14 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
         isLocked = false;
 
-        }
+    }
+
+    // setar o clue
+      public void SetClue(string value)
+    {
+        clue = value; // define a letra correta esperada
+
+    }
 
     public void MarkCorrect()
     {

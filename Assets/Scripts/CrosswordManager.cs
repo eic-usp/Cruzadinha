@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
+
+
 public class CrosswordManager : MonoBehaviour
 {
     public CrosswordCell cellPrefab;
@@ -16,10 +18,13 @@ public class CrosswordManager : MonoBehaviour
     private CrosswordCell[,] grid;
     private CrosswordData crosswordData = new CrosswordData();
     private List<CrosswordData.CrosswordWord> placedWords = new();
+    public GameTimer gameTimer;
+    public MensagemController mensagemController;
 
 
     void Start()
     {
+
         // Get selected disease from PlayerPrefs
         int selectedDisease = PlayerPrefs.GetInt("SelectedDisease", 0);
 
@@ -64,7 +69,11 @@ public class CrosswordManager : MonoBehaviour
             backButton.onClick.AddListener(OnBackClicked);
         }
     }
-
+    void OnTimeExpired()
+    {
+        Debug.Log("Tempo acabou! Faça o que quiser aqui: finalizar, mostrar painel, etc.");
+        // Por exemplo: mostrar tela de Game Over, desabilitar inputs, etc.
+    }
     void OnBackClicked()
     {
         GameSceneManager.Instance.LoadCrosswordSelection();
@@ -76,6 +85,29 @@ public class CrosswordManager : MonoBehaviour
         int gridHeight = crosswordData.gridHeight;
 
         grid = new CrosswordCell[gridWidth, gridHeight];
+        // Obtem o GridLayoutGroup
+        GridLayoutGroup gridLayout = gridParent.GetComponent<GridLayoutGroup>();
+        gridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        gridLayout.constraintCount = gridWidth;
+
+        // Obtem o RectTransform do gridParent
+        RectTransform parentRect = gridParent.GetComponent<RectTransform>();
+
+        // Obtem padding, cellSize e spacing do GridLayoutGroup
+        RectOffset padding = gridLayout.padding;
+
+        float cellWidth = gridLayout.cellSize.x;
+        float cellHeight = gridLayout.cellSize.y;
+        float spacingX = gridLayout.spacing.x;
+        float spacingY = gridLayout.spacing.y;
+
+        // Calcula o tamanho total necessário
+        float totalWidth = padding.left + padding.right + (cellWidth * gridWidth) + (spacingX * (gridWidth - 1));
+        float totalHeight = padding.top + padding.bottom + (cellHeight * gridHeight) + (spacingY * (gridHeight - 1));
+
+        parentRect.sizeDelta = new Vector2(totalWidth, totalHeight);
+
+
 
         for (int y = 0; y < gridHeight; y++)
         {
@@ -86,11 +118,11 @@ public class CrosswordManager : MonoBehaviour
                 CrosswordCell cell = Instantiate(cellPrefab, gridParent);
                 grid[x, y] = cell;
 
-                RectTransform rect = cell.GetComponent<RectTransform>();
-                if (rect != null)
-                {
-                    rect.anchoredPosition = new Vector2(x * (cellSize + spacing), -y * (cellSize + spacing));
-                }
+                //RectTransform rect = cell.GetComponent<RectTransform>();
+                //if (rect != null)
+                //{
+                //   rect.anchoredPosition = new Vector2(x * (cellSize + spacing), -y * (cellSize + spacing));
+                //}
 
                 // Verifica se a célula faz parte de alguma palavra
                 bool isPartOfWord = false;
@@ -133,7 +165,7 @@ public class CrosswordManager : MonoBehaviour
                     {
                         text.enabled = false; // Torna o texto invisível
                     }
-                    
+
                     // Se o campo de input for necessário, ainda pode ser usado mas invisível
                     if (letterInputField != null)
                     {
@@ -178,7 +210,7 @@ public class CrosswordManager : MonoBehaviour
 
     void PlaceWords()
     {
-        foreach (CrosswordData.CrosswordWord word in  crosswordData.words)
+        foreach (CrosswordData.CrosswordWord word in crosswordData.words)
         {
             bool canPlace = true;
 
@@ -213,7 +245,8 @@ public class CrosswordManager : MonoBehaviour
 
                     CrosswordCell cell = grid[x, y];
                     cell.SetLetter(word.word[i]);
-                    Debug.Log($"botando: '{x}, {y}', palabra '{word.word[i]} de {word.word}'");
+                    cell.SetClue(word.clue);
+                   // Debug.Log($"colocando: '{x}, {y}', palavra '{word.word[i]} de {word.word}'");
                 }
 
             }
@@ -226,23 +259,8 @@ public class CrosswordManager : MonoBehaviour
 
     public void ShowHint(CrosswordCell cell)
     {
-        foreach (CrosswordData.CrosswordWord word in placedWords) 
-        {
-            for (int i = 0; i < word.word.Length; i++)
-            {
-                int x = word.col + (word.isHorizontal ? i : 0);
-                int y = word.row + (word.isHorizontal ? 0 : i);
+        hintText.text = cell.clue;
 
-                if (x == cell.x && y == cell.y)
-                {
-                    if (hintText != null)
-                    {
-                        hintText.text = word.clue; 
-                    }
-                    return;
-                }
-            }
-        }
     }
 
     public void CheckWord(CrosswordData.CrosswordWord word)
@@ -267,6 +285,8 @@ public class CrosswordManager : MonoBehaviour
         if (isCorrect)
         {
             Debug.Log($"Word '{word.word}' is correct!");
+            Debug.Log("Teste");
+            
             // Marcar células como corretas
             for (int i = 0; i < word.word.Length; i++)
             {
@@ -274,6 +294,18 @@ public class CrosswordManager : MonoBehaviour
                 int y = word.row + (word.isHorizontal ? 0 : i);
                 grid[x, y].MarkCorrect();
             }
+            Debug.Log("Chamando MostrarMensagemTemporaria para a palavra: " + word.word);
+
+            // Mostrar a mensagem por 5 segundos
+            if (mensagemController == null)
+            {
+                Debug.LogWarning("mensagemController está null no CheckWord!");
+            }
+            else
+            {
+                mensagemController.MostrarMensagemTemporaria($"Palavra '{word.word}' correta!");
+            }
+
         }
     }
 }

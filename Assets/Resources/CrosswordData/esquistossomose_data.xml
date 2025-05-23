@@ -1,44 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <crossword>
-    <integer name="grid_width">13</integer>
-    <integer name="grid_height">12</integer>
+  <integer name="grid_width">12</integer>
+  <integer name="grid_height">13</integer>
 
-    <item row="0" col="8" dir="H">
-        <word>CARACOL</word>
-        <clue>Nome popular do hospedeiro intermediário do Schistosoma mansoni.</clue>
-    </item>
-    
-    <item row="0" col="8" dir="H">
-        <word>homem</word>
-        <clue>Hospedeiro definitivo do Schistosoma mansoni.</clue>
-    </item>
+  <!-- HORIZONTAIS -->
+
+  <item row="2" col="0" dir="H">
+    <word>HOMEM</word>
+    <clue>Hospedeiro definitivo do Schistosoma mansoni.</clue>
+  </item>
+
+   <item row="4" col="2" dir="H">
+    <word>FEZES</word>
+    <clue>Exame coproscópico é também conhecido como exame de _____.</clue>
+  </item>
+
+  <item row="7" col="2" dir="H">
+    <word>AGUA</word>
+    <clue>Uma das formas de prevenção contra a esquistossomose é educar a população para não eliminar fezes na ____ ou próximo a lagoas, riachos e outros corpos d'água.</clue>
+  </item>
 
 
+  <item row="11" col="4" dir="H">
+    <word>VERME</word>
+    <clue>O ________ causador da esquistossomose é um helminto da classe Trematoda.</clue>
+  </item>
 
 
+  <item row="3" col="8" dir="H">
+    <word>PELE</word>
+    <clue>Revestimento cutâneo do corpo, formado por tecido epitelial e tecido conjuntivo, por onde as cercarias podem penetrar no nosso corpo.</clue>
+  </item>
+
+  <item row="9" col="4" dir="H">
+    <word>FIGADO</word>
+    <clue>Órgão onde, nos vasos sanguíneos, o casal de vermes causador da esquistossomose se aloja.</clue>
+  </item>
 
 
-        <item>2;AGUA;Uma das formas de prevenção contra a esquistossomose é educar a população para não eliminar fezes na ____  ou próximo a lagoas, riachos e outros corpos d'água.</item>
-        <item>2;MIRACIDIO;Forma larval do agente causador da esquistossomose, forma infectante do hospedeiro intermediário.</item>
-        <item>4;FEZES;Exame coproscópico é também conhecido como exame de  _____.</item>
-        <item>0;SCHISTOSOMA;_____ mansoni: Nome científico do agente causador da Esquistossomose.</item>
-        <item>1;VERME;O ________ causador da esquistossomose é um helminto da classe Trematoda.</item>
-        <item>4;NORDESTE;Região que abrange: Alagoas, Bahia, Ceará, Maranhão, Paraíba, Pernambuco, Piauí, Rio Grande do Norte e Sergipe, que em 2011, segundo o Ministério da Saúde, registrou 37.263 casos de esquistossomose.</item>
-        <item>2;XISTOSA;Nome popular da esquistossomose.</item>
-        <item>3;DERMATITE;Reação da pele à penetração das cercarias.</item>
-        <item>3;KATOKATZ;Método utilizado na análise das fezes de pacientes com suspeita de esquistossomose que permite a identificação e contagem de ovos.</item>
-        <item>0;MICROSCOPIO;Aparelho que permite a observação de seres microscópicos, com aumentos variáveis, utilizado no diagnóstico da esquistossomose para analisar as fezes do paciente.</item>
-        <item>1;ASCITE;Nome dado ao acúmulo de líquido no interior do abdômen, e é um dos sintomas visíveis da Esquistossomose entre outras doenças.</item>
-        <item>3;PELE;Revestimento cutâneo do corpo, formado por tecido epitelial e tecido conjuntivo, por onde as cercarias podem penetrar no nosso corpo.</item>
-        <item>0;FIGADO;Órgão onde, nos vasos sanguíneos, o casal de vermes causador da esquistossomose se aloja.</item>
-        <item>0;COPROSCOPICO;Nome científico que significa "exame de fezes" serve para diagnosticar doenças e parasitoses intestinais.</item>
-    </string-array>
+  <!-- VERTICAL -->
+  <item row="0" col="10" dir="V">
+    <word>SANEAMENTO</word>
+    <clue>O _____ básico é uma medida de prevenção contra a esquistossomose.</clue>
+  </item>
 
-    <string-array name="horizontal_words">
-        <item>2;SANEAMENTO;O _____ básico é uma medida de prevenção contra a esquistossomose.</item>
-        <item>0;CERCARIA;Forma larval do agente causador da Esquistossomose que pode nadar livremente, sendo a forma infectante do homem</item>
-        <item>1;MINASGERAIS;Estado da região sudeste que mais registrou casos de esquistossomose em 2011 segundo dados do Ministério da Saúde.</item>
-        <item>2;AFRICA;Continente no qual se acredita que a esquistossomose tenha se originado.</item>
-        <item>0;ORIENTEMEDIO;Região geográfica localizada ao leste e ao sul do Mar Mediterrâneo onde há ocorrência da esquistossomose hematóbica, na qual o agente causador é o Schistosoma haematobium.</item>
-        <item>1;ESPOROCISTO;Formas unicelulares que produzem esporos assexuados. Na esquistossomose essa forma se aloja nos tecidos moles do caramujo e se divide assexuadamente aumentando o número de parasitas.</item>
+  <item row="7" col="2" dir="V">
+    <word>AFRICA</word>
+    <clue>Continente no qual se acredita que a esquistossomose tenha se originado.</clue>
+  </item>
+
+  <item row="3" col="5" dir="V">
+    <word>DERMATITE</word>
+    <clue>Reação da pele à penetração das cercarias.</clue>
+  </item>
+
+  <item row="1" col="3" dir="V">
+    <word>PELE</word>
+    <clue>Revestimento cutâneo do corpo, formado por tecido epitelial e tecido conjuntivo, por onde as cercarias podem penetrar no nosso corpo.</clue>
+  </item>
+
+
 </crossword>
