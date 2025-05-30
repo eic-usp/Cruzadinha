@@ -1,26 +1,41 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ThemeSelectionManager : MonoBehaviour
 {
-    public GameObject levelSelectionModal;  // referencie o painel modal no inspector
+    public GameObject buttonPrefab;
+    public Transform buttonContainer;
+    public GameObject levelSelectionModal;
+    public int numberOfThemes = 3;
+
     private int selectedThemeIndex;
+
+    void Start()
+    {
+        for (int i = 0; i < numberOfThemes; i++)
+        {
+            int themeIndex = i;
+            GameObject buttonObj = Instantiate(buttonPrefab, buttonContainer);
+            Button btn = buttonObj.GetComponent<Button>();
+            btn.GetComponentInChildren<Text>().text = "Tema " + (i + 1);
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() => OnThemeSelected(themeIndex));
+        }
+
+        levelSelectionModal.SetActive(false);
+    }
 
     public void OnThemeSelected(int themeIndex)
     {
         selectedThemeIndex = themeIndex;
-
-        // Mostra o modal para escolher o nível
         levelSelectionModal.SetActive(true);
     }
 
     public void OnLevelSelected(int level)
     {
-        // Salva a escolha no PlayerPrefs para usar na próxima cena
         PlayerPrefs.SetInt("SelectedTheme", selectedThemeIndex);
         PlayerPrefs.SetInt("SelectedLevel", level);
-
-        // Carrega a cena do jogo da cruzadinha
         SceneManager.LoadScene("CrosswordGameScene");
     }
 

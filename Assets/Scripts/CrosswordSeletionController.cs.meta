@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: fac210a6c99f5cb418d3acf324b02921
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - crosswordButtonPrefab: {fileID: 7140452399730727512, guid: 84ccc7179c21af14087d163c3fe16596, type: 3}
+  - gridLayout: {fileID: 357371076430203557, guid: 3787af3a8100d2c4c895287e8a1359f2, type: 3}
+  - backButton: {fileID: 1094440172127761245, guid: 2a338c81fd9596046949a0275eb1e718, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

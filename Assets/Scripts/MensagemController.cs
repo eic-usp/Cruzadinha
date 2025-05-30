@@ -1,13 +1,13 @@
 using UnityEngine;
-using TMPro; // se você usa TextMeshPro, senão use UnityEngine.UI para Text
+using TMPro; 
 
 public class MensagemController : MonoBehaviour
 {
-    public TextMeshProUGUI textoMensagem;  // arraste aqui o texto UI no Inspector
+    public TextMeshProUGUI textoMensagem;  
 
     private Coroutine mostrarMensagemCoroutine;
 
-    // Método para mostrar a mensagem por 5 segundos
+   
 
 
     public void MostrarMensagemTemporaria(string mensagem)

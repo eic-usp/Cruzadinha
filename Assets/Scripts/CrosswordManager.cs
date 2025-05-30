@@ -18,12 +18,33 @@ public class CrosswordManager : MonoBehaviour
     private CrosswordCell[,] grid;
     private CrosswordData crosswordData = new CrosswordData();
     private List<CrosswordData.CrosswordWord> placedWords = new();
-    public GameTimer gameTimer;
+
+    public GameTimer GameTimer;
+    private int selectedTheme;
+    private int selectedLevel;
     public MensagemController mensagemController;
+    public GameObject gameOverPanel; 
+    private bool gameOver = false;  // Controla se o jogo acabou
+
 
 
     void Start()
     {
+        //level 
+        selectedTheme = PlayerPrefs.GetInt("SelectedTheme", 0);  // ou "SelectedCrosswordIndex" conforme usa no menu
+        selectedLevel = PlayerPrefs.GetInt("SelectedLevel", 1);
+        Debug.Log($"Tema selecionado: {selectedTheme}, Nível selecionado: {selectedLevel}");
+        //inicia o jogo 
+        if (selectedLevel == 2)
+        {
+            GameTimer.StartTimer(120f);
+        }
+        else
+        {
+            // Nível 1: modo normal, sem tempo
+            GameTimer.StopTimer();
+        }
+
 
         // Get selected disease from PlayerPrefs
         int selectedDisease = PlayerPrefs.GetInt("SelectedDisease", 0);
@@ -72,7 +93,6 @@ public class CrosswordManager : MonoBehaviour
     void OnTimeExpired()
     {
         Debug.Log("Tempo acabou! Faça o que quiser aqui: finalizar, mostrar painel, etc.");
-        // Por exemplo: mostrar tela de Game Over, desabilitar inputs, etc.
     }
     void OnBackClicked()
     {
