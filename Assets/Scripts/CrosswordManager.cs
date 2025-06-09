@@ -23,13 +23,22 @@ public class CrosswordManager : MonoBehaviour
     private int selectedTheme;
     private int selectedLevel;
     public MensagemController mensagemController;
-    public GameObject gameOverPanel; 
-    private bool gameOver = false;  // Controla se o jogo acabou
+    public GameObject gameOverPanel;
+    //private bool gameOver = false;  // Controla se o jogo acabou
+    public bool isCompleted = false;
+
+    private int totalWords;
+    private int correctWordsCount = 0;
+
 
 
 
     void Start()
     {
+        //contador de palavras para a vitoria 
+        totalWords = crosswordData.words.Count;
+
+
         //level 
         selectedTheme = PlayerPrefs.GetInt("SelectedTheme", 0);  // ou "SelectedCrosswordIndex" conforme usa no menu
         selectedLevel = PlayerPrefs.GetInt("SelectedLevel", 1);
@@ -266,6 +275,9 @@ public class CrosswordManager : MonoBehaviour
                     CrosswordCell cell = grid[x, y];
                     cell.SetLetter(word.word[i]);
                     cell.SetClue(word.clue);
+                    cell.palavraAssociada = word;
+                    cell.crosswordManager = this;
+
                    // Debug.Log($"colocando: '{x}, {y}', palavra '{word.word[i]} de {word.word}'");
                 }
 
@@ -282,10 +294,16 @@ public class CrosswordManager : MonoBehaviour
         hintText.text = cell.clue;
 
     }
+    
 
+    
     public void CheckWord(CrosswordData.CrosswordWord word)
     {
+        Debug.Log($"CheckWord chamado para: {word.word}");
+
+        if (word.isCompleted) return;
         bool isCorrect = true;
+
         for (int i = 0; i < word.word.Length; i++)
         {
             int x = word.col + (word.isHorizontal ? i : 0);
@@ -304,29 +322,33 @@ public class CrosswordManager : MonoBehaviour
 
         if (isCorrect)
         {
-            Debug.Log($"Word '{word.word}' is correct!");
-            Debug.Log("Teste");
-            
-            // Marcar células como corretas
-            for (int i = 0; i < word.word.Length; i++)
+            if (!word.isCompleted)
             {
-                int x = word.col + (word.isHorizontal ? i : 0);
-                int y = word.row + (word.isHorizontal ? 0 : i);
-                grid[x, y].MarkCorrect();
-            }
-            Debug.Log("Chamando MostrarMensagemTemporaria para a palavra: " + word.word);
+                word.isCompleted = true;
+                correctWordsCount++;
 
-            // Mostrar a mensagem por 5 segundos
-            if (mensagemController == null)
-            {
-                Debug.LogWarning("mensagemController está null no CheckWord!");
+                if (mensagemController != null)
+                    mensagemController.MostrarMensagemTemporaria($"Palavra '{word.word}' correta!");
+
+                if (correctWordsCount == totalWords)
+                {
+                    Debug.Log("Vitória alcançada!");
+                    gameOverPanel.SetActive(true);
+                }
             }
-            else
-            {
+
+            if (mensagemController != null)
                 mensagemController.MostrarMensagemTemporaria($"Palavra '{word.word}' correta!");
-            }
 
+            if (correctWordsCount == totalWords)
+            {
+                Debug.Log("Vitória alcançada!");
+                gameOverPanel.SetActive(true);
+            }
         }
+
+        Debug.Log($"Corretas: {correctWordsCount}/{totalWords}");
     }
+
 }
 

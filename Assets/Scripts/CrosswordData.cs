@@ -15,6 +15,8 @@ public class CrosswordData
         public string word;
         public string clue;
         public bool isHorizontal;
+        public bool isCompleted = false;
+
     }
 
     public static CrosswordData LoadFromXML(TextAsset xmlFile)

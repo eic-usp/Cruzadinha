@@ -21,10 +21,13 @@ public class CrosswordCell : MonoBehaviour
     private Color correctColor = new Color(0.6f, 1f, 0.6f);
     private Color incorrectColor = new Color(1f, 0.6f, 0.6f);
 
-    private CrosswordManager crosswordManager;
+    public CrosswordManager crosswordManager;
+    public CrosswordData.CrosswordWord palavraAssociada; // A palavra que essa célula pertence
+
 
     void Start()
     {
+
         if (backgroundImage == null)
         {
             backgroundImage = GetComponent<Image>();
@@ -33,9 +36,10 @@ public class CrosswordCell : MonoBehaviour
         backgroundImage.enabled = letter != default;
 
         // Inicializa o InputField
-        if (letterInputField == null)
+        if (letterInputField != null)
         {
-            letterInputField = GetComponentInChildren<TMP_InputField>(); // Aqui pega o InputField
+            letterInputField.onValueChanged.AddListener(OnInputValueChanged);
+
         }
 
         // Desativa a possibilidade de digitar se a célula estiver bloqueada
@@ -61,28 +65,34 @@ public class CrosswordCell : MonoBehaviour
     // Esse método é chamado toda vez que o valor do InputField é alterado
     private void OnInputValueChanged(string newText)
     {
-        // Verifica se a nova letra é válida
-        if (newText.Length > 0)
-        {
-            letter = char.ToUpper(newText[0]); // pega a letra digitada pelo usuário, em maiúscula
-            letterInputField.text = letter.ToString(); // garante que só tenha 1 letra visível
-
-            // Opcional: pode validar automaticamente aqui
-            if (letter == expectedLetter)
-            {
-                MarkCorrect();
-            }
-            else
-            {
-                MarkIncorrect();
-            }
-        }
-        else
+        if (string.IsNullOrEmpty(newText))
         {
             letter = default;
             backgroundImage.color = normalColor;
+            return;
+        }
+
+        // Pega a letra digitada, garante que seja maiúscula e que só uma letra apareça
+        letter = char.ToUpper(newText[0]);
+        letterInputField.text = letter.ToString();
+
+        // Primeiro valida se a letra é correta
+        if (letter == expectedLetter)
+        {
+            MarkCorrect();
+        }
+        else
+        {
+            MarkIncorrect();
+        }
+
+        // Só depois de definir a letra e o estado visual, chama o CheckWord()
+        if (crosswordManager != null && palavraAssociada != null)
+        {
+            crosswordManager.CheckWord(palavraAssociada);
         }
     }
+
 
     public void OnInputSelected(string text)
     {
