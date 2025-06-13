@@ -3,64 +3,64 @@
     <integer name="grid_width">13</integer>
     <integer name="grid_height">12</integer>
   
-  <!-- HORIZONTAIS -->
-  <item row="0" col="8" dir="H">
-    <word>CRUZI</word>
-    <clue>Trypanosoma _____ : Nome científico do protozoário causador da Doença de Chagas.</clue>
-  </item>
+    <!-- HORIZONTAIS -->
+    <item row="0" col="8" dir="H">
+      <word>CRUZI</word>
+      <clue>Trypanosoma _____ : Nome científico do protozoário causador da Doença de Chagas.</clue>
+    </item>
 
-  <item row="5" col="7" dir="H">
-    <word>CANA</word>
-    <clue>Caldo de _____: Alimento que já esteve envolvido na transmissão por via oral da Doença de Chagas.</clue>
-  </item>
+    <item row="5" col="7" dir="H">
+      <word>CANA</word>
+      <clue>Caldo de _____: Alimento que já esteve envolvido na transmissão por via oral da Doença de Chagas.</clue>
+    </item>
 
-  <item row="3" col="4" dir="h">
-    <word>AGUDA</word>
-    <clue>Uma das fases da Doença de Chagas que surge após a infecção, cujos sintomas clínicos são mais nítidos. É um período de definição: ou o paciente se cura, ou passa para a fase crônica ou morre.</clue>
-  </item>
+    <item row="3" col="4" dir="h">
+      <word>AGUDA</word>
+      <clue>Uma das fases da Doença de Chagas que surge após a infecção, cujos sintomas clínicos são mais nítidos. É um período de definição: ou o paciente se cura, ou passa para a fase crônica ou morre.</clue>
+    </item>
 
-  <item row="5" col="0" dir="H">
-    <word>TAIPA</word>
-    <clue>Tipo de construção de casas na zona rural que pode abrigar o Barbeiro, vetor da doença de Chagas.</clue>
-  </item>
+    <item row="5" col="0" dir="H">
+      <word>TAIPA</word>
+      <clue>Tipo de construção de casas na zona rural que pode abrigar o Barbeiro, vetor da doença de Chagas.</clue>
+    </item>
 
-  <item row="1" col="0" dir="H">
-    <word>PROCOTO</word>
-    <clue>Nome popular do inseto transmissor da Doença de Chagas na região do sertão da Paraíba.</clue>
-  </item>
+    <item row="1" col="0" dir="H">
+      <word>PROCOTO</word>
+      <clue>Nome popular do inseto transmissor da Doença de Chagas na região do sertão da Paraíba.</clue>
+    </item>
 
-  <item row="8" col="0" dir="H">
-    <word>FEZES</word>
-    <clue>São eliminadas pelo vetor durante a picada. Ao coçar, quando contaminadas com o T. cruzi, são carregadas até o ferimento, possibilitando a entrada do parasita no corpo.</clue>
-  </item>
+    <item row="8" col="0" dir="H">
+      <word>FEZES</word>
+      <clue>São eliminadas pelo vetor durante a picada. Ao coçar, quando contaminadas com o T. cruzi, são carregadas até o ferimento, possibilitando a entrada do parasita no corpo.</clue>
+    </item>
 
-  <item row="10" col="0" dir="H">
-    <word>ORAL</word>
-    <clue>Forma de transmissão da Doença de Chagas que se dá através da ingestão de alimentos contendo o vetor ou suas fezes contaminados com o T. cruzi.</clue>
-  </item>
-
-
-  <!-- VERTICAIS -->
-  <item row="0" col="8" dir="V">
-    <word>CORACAO</word>
-    <clue>Um dos sintomas da fase crônica da Doença de Chagas é a miocardite que atinge o ________, provocando uma inflamação no miocárdio.</clue>
-  </item>
-
-  <item row="0" col="4" dir="V">
-    <word>ROMANA</word>
-    <clue>Sinal de ______: Sintoma da Doença de Chagas que se caracteriza pelo inchaço das pálpebras do indivíduo contaminado.</clue>
-  </item>
+    <item row="10" col="0" dir="H">
+      <word>ORAL</word>
+      <clue>Forma de transmissão da Doença de Chagas que se dá através da ingestão de alimentos contendo o vetor ou suas fezes contaminados com o T. cruzi.</clue>
+    </item>
 
 
-  <item row="4" col="1" dir="V">
-    <word>BARBEIRO</word>
-    <clue>Nome popular do inseto vetor da Doença de Chagas.</clue>
-  </item>
+    <!-- VERTICAIS -->
+    <item row="0" col="8" dir="V">
+      <word>CORACAO</word>
+      <clue>Um dos sintomas da fase crônica da Doença de Chagas é a miocardite que atinge o ________, provocando uma inflamação no miocárdio.</clue>
+    </item>
+
+    <item row="0" col="4" dir="V">
+      <word>ROMANA</word>
+      <clue>Sinal de ______: Sintoma da Doença de Chagas que se caracteriza pelo inchaço das pálpebras do indivíduo contaminado.</clue>
+    </item>
 
 
-  <item row="5" col="10" dir="V">
-    <word>ACAI</word>
-    <clue>Alimento algumas vezes envolvido na transmissão por via oral da Doença de Chagas, quando consumido não pasteurizado.</clue>
-  </item>
+    <item row="4" col="1" dir="V">
+      <word>BARBEIRO</word>
+      <clue>Nome popular do inseto vetor da Doença de Chagas.</clue>
+    </item>
+
+
+    <item row="5" col="10" dir="V">
+      <word>ACAI</word>
+      <clue>Alimento algumas vezes envolvido na transmissão por via oral da Doença de Chagas, quando consumido não pasteurizado.</clue>
+    </item>
 
 </crossword>

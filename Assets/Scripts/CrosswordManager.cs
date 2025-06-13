@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Xml.Linq;
-
+using UnityEngine.SceneManagement;  
 
 
 public class CrosswordManager : MonoBehaviour
@@ -15,7 +15,7 @@ public class CrosswordManager : MonoBehaviour
     public Text diseaseTitleText;
     public Button backButton;
 
-    private CrosswordCell[,] grid;
+    public CrosswordCell[,] grid;
     private CrosswordData crosswordData = new CrosswordData();
     private List<CrosswordData.CrosswordWord> placedWords = new();
 
@@ -24,10 +24,11 @@ public class CrosswordManager : MonoBehaviour
     private int selectedLevel;
     public MensagemController mensagemController;
     public GameObject gameOverPanel;
+    public Button PularmodalButton;  // O botão de finalizar no modal
     //private bool gameOver = false;  // Controla se o jogo acabou
     public bool isCompleted = false;
 
-    private int totalWords;
+    private int totalWords = 0;
     private int correctWordsCount = 0;
 
 
@@ -35,10 +36,6 @@ public class CrosswordManager : MonoBehaviour
 
     void Start()
     {
-        //contador de palavras para a vitoria 
-        totalWords = crosswordData.words.Count;
-
-
         //level 
         selectedTheme = PlayerPrefs.GetInt("SelectedTheme", 0);  // ou "SelectedCrosswordIndex" conforme usa no menu
         selectedLevel = PlayerPrefs.GetInt("SelectedLevel", 1);
@@ -53,7 +50,6 @@ public class CrosswordManager : MonoBehaviour
             // Nível 1: modo normal, sem tempo
             GameTimer.StopTimer();
         }
-
 
         // Get selected disease from PlayerPrefs
         int selectedDisease = PlayerPrefs.GetInt("SelectedDisease", 0);
@@ -74,6 +70,16 @@ public class CrosswordManager : MonoBehaviour
         {
             Debug.LogError("Failed to load crossword data from XML");
             return;
+        }
+
+        //contador de palavras para a vitoria 
+        totalWords = crosswordData.words.Count;
+        Debug.Log($"Total de palavras no jogo: {totalWords}");
+        correctWordsCount = 0; // Reset the counter to ensure it starts at 0
+
+        if (PularmodalButton != null)
+        {
+            PularmodalButton.onClick.AddListener(OnFinishButtonClicked);
         }
 
         // Set disease title
@@ -234,6 +240,21 @@ public class CrosswordManager : MonoBehaviour
             }
         }
     }
+  
+
+    // Método chamado quando o botão de finalizar é clicado
+    public void OnFinishButtonClicked()
+    {
+        // Fechar o modal (gameOverPanel)
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false); // Desativa o painel do modal
+        }
+
+        // Carregar a cena de seleção
+        SceneManager.LoadScene("CrosswordSelection");  
+    }
+
 
 
 
@@ -273,12 +294,14 @@ public class CrosswordManager : MonoBehaviour
                     int y = word.row + (word.isHorizontal ? 0 : i);
 
                     CrosswordCell cell = grid[x, y];
+                    cell.x = x;
+                    cell.y = y;
                     cell.SetLetter(word.word[i]);
                     cell.SetClue(word.clue);
                     cell.palavraAssociada = word;
                     cell.crosswordManager = this;
 
-                   // Debug.Log($"colocando: '{x}, {y}', palavra '{word.word[i]} de {word.word}'");
+                    // Debug.Log($"colocando: '{x}, {y}', palavra '{word.word[i]} de {word.word}'");
                 }
 
             }
@@ -294,14 +317,33 @@ public class CrosswordManager : MonoBehaviour
         hintText.text = cell.clue;
 
     }
+    public CrosswordCell GetNextCell(int x, int y)
+    {
+        // Verifica se a célula à direita ou abaixo está dentro dos limites
+        if (x < crosswordData.gridWidth - 1)
+        {
+            return grid[x + 1, y]; // Próxima célula na horizontal
+        }
+        else if (y < crosswordData.gridHeight - 1)
+        {
+            return grid[x, y + 1]; // Próxima célula na vertical
+        }
+
+        return null; // Se não houver mais células
+    }
     
 
-    
+
+
     public void CheckWord(CrosswordData.CrosswordWord word)
     {
-        Debug.Log($"CheckWord chamado para: {word.word}");
-
-        if (word.isCompleted) return;
+        Debug.Log($"checando palavra {word.word}");
+        if (word.isCompleted)
+        {
+            Debug.Log($"Palavra '{word.word}' já está completa, ignorando.");
+            return;
+        }
+        
         bool isCorrect = true;
 
         for (int i = 0; i < word.word.Length; i++)
@@ -314,6 +356,7 @@ public class CrosswordManager : MonoBehaviour
                 CrosswordCell cell = grid[x, y];
                 if (cell == null || cell.letter != cell.expectedLetter)
                 {
+                    Debug.Log($"ERRADA! letra: {cell.letter}, esperada: {cell.expectedLetter}");
                     isCorrect = false;
                     break;
                 }
@@ -322,33 +365,29 @@ public class CrosswordManager : MonoBehaviour
 
         if (isCorrect)
         {
-            if (!word.isCompleted)
-            {
-                word.isCompleted = true;
-                correctWordsCount++;
-
-                if (mensagemController != null)
-                    mensagemController.MostrarMensagemTemporaria($"Palavra '{word.word}' correta!");
-
-                if (correctWordsCount == totalWords)
-                {
-                    Debug.Log("Vitória alcançada!");
-                    gameOverPanel.SetActive(true);
-                }
-            }
-
+            word.isCompleted = true;
+            correctWordsCount++;
+            Debug.Log($"Palavra '{word.word}' correta! Progresso: {correctWordsCount}/{totalWords}");
+            
             if (mensagemController != null)
-                mensagemController.MostrarMensagemTemporaria($"Palavra '{word.word}' correta!");
-
-            if (correctWordsCount == totalWords)
             {
-                Debug.Log("Vitória alcançada!");
-                gameOverPanel.SetActive(true);
+                mensagemController.MostrarMensagemTemporaria($"Palavra '{word.word}' correta!");
+            }
+            
+            // Verifica se todas as palavras foram acertadas
+            if (correctWordsCount >= totalWords)
+            {
+                Debug.Log($"Vitória alcançada! Total de palavras: {totalWords}, Palavras corretas: {correctWordsCount}");
+                isCompleted = true;
+                gameOverPanel.SetActive(true);  // Mostra o painel de vitória
             }
         }
-
-        Debug.Log($"Corretas: {correctWordsCount}/{totalWords}");
+        else
+        {
+            Debug.Log($"Palavra '{word.word}' ainda não está correta.");
+        }
     }
+    
 
 }
 

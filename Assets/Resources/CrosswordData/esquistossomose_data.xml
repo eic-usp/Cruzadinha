@@ -1,63 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <crossword>
-  <integer name="grid_width">12</integer>
-  <integer name="grid_height">13</integer>
+  <integer name="grid_width">13</integer>
+  <integer name="grid_height">12</integer>
 
-  <!-- HORIZONTAIS -->
+    <!-- HORIZONTAIS -->
 
-  <item row="2" col="0" dir="H">
-    <word>HOMEM</word>
-    <clue>Hospedeiro definitivo do Schistosoma mansoni.</clue>
-  </item>
+    <item row="2" col="0" dir="H">
+      <word>HOMEM</word>
+      <clue>Hospedeiro definitivo do Schistosoma mansoni.</clue>
+    </item>
 
-   <item row="4" col="2" dir="H">
-    <word>FEZES</word>
-    <clue>Exame coproscópico é também conhecido como exame de _____.</clue>
-  </item>
+    <item row="4" col="2" dir="H">
+      <word>FEZES</word>
+      <clue>Exame coproscópico é também conhecido como exame de _____.</clue>
+    </item>
 
-  <item row="7" col="2" dir="H">
-    <word>AGUA</word>
-    <clue>Uma das formas de prevenção contra a esquistossomose é educar a população para não eliminar fezes na ____ ou próximo a lagoas, riachos e outros corpos d'água.</clue>
-  </item>
-
-
-  <item row="11" col="4" dir="H">
-    <word>VERME</word>
-    <clue>O ________ causador da esquistossomose é um helminto da classe Trematoda.</clue>
-  </item>
+    <item row="7" col="2" dir="H">
+      <word>AGUA</word>
+      <clue>Uma das formas de prevenção contra a esquistossomose é educar a população para não eliminar fezes na ____ ou próximo a lagoas, riachos e outros corpos d'água.</clue>
+    </item>
 
 
-  <item row="3" col="8" dir="H">
-    <word>PELE</word>
-    <clue>Revestimento cutâneo do corpo, formado por tecido epitelial e tecido conjuntivo, por onde as cercarias podem penetrar no nosso corpo.</clue>
-  </item>
+    <item row="11" col="4" dir="H">
+      <word>VERME</word>
+      <clue>O ________ causador da esquistossomose é um helminto da classe Trematoda.</clue>
+    </item>
 
-  <item row="9" col="4" dir="H">
-    <word>FIGADO</word>
-    <clue>Órgão onde, nos vasos sanguíneos, o casal de vermes causador da esquistossomose se aloja.</clue>
-  </item>
+    <item row="9" col="4" dir="H">
+      <word>FIGADO</word>
+      <clue>Órgão onde, nos vasos sanguíneos, o casal de vermes causador da esquistossomose se aloja.</clue>
+    </item>
 
 
-  <!-- VERTICAL -->
-  <item row="0" col="10" dir="V">
-    <word>SANEAMENTO</word>
-    <clue>O _____ básico é uma medida de prevenção contra a esquistossomose.</clue>
-  </item>
+    <!-- VERTICAL -->
+    <item row="0" col="9" dir="V">
+      <word>SANEAMENTO</word>
+      <clue>O _____ básico é uma medida de prevenção contra a esquistossomose.</clue>
+    </item>
 
-  <item row="7" col="2" dir="V">
-    <word>AFRICA</word>
-    <clue>Continente no qual se acredita que a esquistossomose tenha se originado.</clue>
-  </item>
+    <item row="7" col="2" dir="V">
+      <word>AFRICA</word>
+      <clue>Continente no qual se acredita que a esquistossomose tenha se originado.</clue>
+    </item>
 
-  <item row="3" col="5" dir="V">
-    <word>DERMATITE</word>
-    <clue>Reação da pele à penetração das cercarias.</clue>
-  </item>
+    <item row="3" col="5" dir="V">
+      <word>DERMATITE</word>
+      <clue>Reação da pele à penetração das cercarias.</clue>
+    </item>
 
-  <item row="1" col="3" dir="V">
-    <word>PELE</word>
-    <clue>Revestimento cutâneo do corpo, formado por tecido epitelial e tecido conjuntivo, por onde as cercarias podem penetrar no nosso corpo.</clue>
-  </item>
+    <item row="1" col="3" dir="V">
+      <word>PELE</word>
+      <clue>Revestimento cutâneo do corpo, formado por tecido epitelial e tecido conjuntivo, por onde as cercarias podem penetrar no nosso corpo.</clue>
+    </item>
 
 
 </crossword>
