@@ -298,7 +298,7 @@ public class CrosswordManager : MonoBehaviour
                     cell.y = y;
                     cell.SetLetter(word.word[i]);
                     cell.SetClue(word.clue);
-                    cell.palavraAssociada = word;
+                    cell.palavrasAssociadas.Add(word);
                     cell.crosswordManager = this;
 
                     // Debug.Log($"colocando: '{x}, {y}', palavra '{word.word[i]} de {word.word}'");

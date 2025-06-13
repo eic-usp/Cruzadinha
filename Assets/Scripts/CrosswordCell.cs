@@ -2,6 +2,7 @@ using TMPro; // Para usar o TextMeshPro
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class CrosswordCell : MonoBehaviour
 {
@@ -9,8 +10,7 @@ public class CrosswordCell : MonoBehaviour
     public char expectedLetter;
     public string clue;
 
-
-    public TMP_InputField letterInputField; // Substituído para usar InputField
+    public TMP_InputField letterInputField; // Usando InputField do TextMeshPro
     public Image backgroundImage;
     public bool isSelected = false;
     public bool isHorizontal = false;
@@ -23,12 +23,10 @@ public class CrosswordCell : MonoBehaviour
     private Color incorrectColor = new Color(1f, 0.6f, 0.6f);
 
     public CrosswordManager crosswordManager;
-    public CrosswordData.CrosswordWord palavraAssociada; // A palavra que essa célula pertence
-
+    public List<CrosswordData.CrosswordWord> palavrasAssociadas = new List<CrosswordData.CrosswordWord>(); // Lista de palavras associadas
 
     void Start()
     {
-
         if (backgroundImage == null)
         {
             backgroundImage = GetComponent<Image>();
@@ -40,7 +38,6 @@ public class CrosswordCell : MonoBehaviour
         if (letterInputField != null)
         {
             letterInputField.onValueChanged.AddListener(OnInputValueChanged);
-
         }
 
         // Desativa a possibilidade de digitar se a célula estiver bloqueada
@@ -62,10 +59,10 @@ public class CrosswordCell : MonoBehaviour
             letterInputField.onSelect.AddListener(OnInputSelected);
         }
     }
+
     // Função que retorna a próxima célula com base nas coordenadas fornecidas (x, y)
     public CrosswordCell GetNextCell(int x, int y)
     {
-        //Debug.Log($"coordenas{x}, {y}");
         // Verifique se a coordenada (x, y) está dentro dos limites da grade
         if (x >= 0 && x < crosswordManager.grid.GetLength(0) && y >= 0 && y < crosswordManager.grid.GetLength(1))
         {
@@ -73,7 +70,6 @@ public class CrosswordCell : MonoBehaviour
         }
         return null;  // Se a coordenada não for válida, retorna null
     }
-
 
     // Esse método é chamado toda vez que o valor do InputField é alterado
     private void OnInputValueChanged(string newText)
@@ -99,16 +95,22 @@ public class CrosswordCell : MonoBehaviour
             MarkIncorrect();
         }
 
-        // Volta a verificar apenas a palavra associada
-        if (crosswordManager != null && palavraAssociada != null)
+        // Volta a verificar as palavras associadas
+        if (crosswordManager != null && palavrasAssociadas.Count > 0)
         {
-            crosswordManager.CheckWord(palavraAssociada);
+            foreach (var palavra in palavrasAssociadas)
+            {
+                crosswordManager.CheckWord(palavra);  // Verifica todas as palavras associadas à célula
+            }
         }
     }
+
     private void MoveToNextCell()
     {
-        
-        if (palavraAssociada == null) return;
+        if (palavrasAssociadas.Count == 0) return;
+
+        // A primeira palavra associada (pode ser melhorada para trabalhar com múltiplas)
+        CrosswordData.CrosswordWord palavraAssociada = palavrasAssociadas[0];
 
         int nextX = x;
         int nextY = y;
@@ -116,28 +118,22 @@ public class CrosswordCell : MonoBehaviour
         // Determina a próxima posição baseada na direção da palavra
         if (palavraAssociada.isHorizontal)
         {
-
             nextX = x + 1;
             nextY = y;
-            //Debug.Log($"{nextX}");
-            //Debug.Log($"X atual: {x}");
         }
         else
         {
             nextX = x;
             nextY = y + 1;
-            //Debug.Log($"{nextY}");
-           // Debug.Log($"Y atual: {y}");
-
         }
 
         if (palavraAssociada.isHorizontal && nextX >= palavraAssociada.col + palavraAssociada.word.Length)
         {
-            return; 
+            return;
         }
         else if (!palavraAssociada.isHorizontal && nextY >= palavraAssociada.row + palavraAssociada.word.Length)
         {
-            return; 
+            return;
         }
 
         // Obtém a próxima célula
@@ -175,10 +171,6 @@ public class CrosswordCell : MonoBehaviour
         }
     }
 
-
-
-
-
     public void OnInputSelected(string text)
     {
         if (isLocked) return;
@@ -203,25 +195,24 @@ public class CrosswordCell : MonoBehaviour
     public void SetLetter(char value)
     {
         backgroundImage.enabled = true;
-        expectedLetter = char.ToUpper(value); // define a letra correta esperada
+        expectedLetter = char.ToUpper(value); // Define a letra correta esperada
         Debug.Log($"Definindo letra esperada '{expectedLetter}' para célula na posição ({x}, {y})");
 
         letter = default;
         if (letterInputField != null)
         {
-            letterInputField.text = ""; // limpa o input para o usuário digitar
-            letterInputField.interactable = true; 
+            letterInputField.text = ""; // Limpa o input para o usuário digitar
+            letterInputField.interactable = true;
             letterInputField.textComponent.alignment = TextAlignmentOptions.Center;
         }
 
         isLocked = false;
     }
 
-    // seta o clue
+    // Seta o clue
     public void SetClue(string value)
     {
-        clue = value; // define a letra correta esperada
-
+        clue = value; // Define a dica
     }
 
     public void MarkCorrect()
@@ -230,7 +221,7 @@ public class CrosswordCell : MonoBehaviour
         {
             backgroundImage.color = correctColor;
             isLocked = true;
-            letterInputField.interactable = false; // Desativa a interação quando correto
+            letterInputField.interactable = false; // Desativa a interação quando a letra estiver correta
         }
     }
 
@@ -244,7 +235,6 @@ public class CrosswordCell : MonoBehaviour
 
     public void ResetCell()
     {
-        
         isLocked = false;
         isSelected = false;
         letter = default;
@@ -254,13 +244,11 @@ public class CrosswordCell : MonoBehaviour
             letterInputField.text = ""; // Limpa o campo de texto
             letterInputField.interactable = true;
             letterInputField.gameObject.SetActive(true); // Reativa o campo de input quando a célula é resetada
-
         }
         if (backgroundImage != null)
         {
             backgroundImage.color = normalColor;
             backgroundImage.enabled = expectedLetter != default;
-
         }
     }
 }
